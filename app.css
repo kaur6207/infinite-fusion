@@ -761,6 +761,22 @@ section {
 .grid>* {
   min-width: 0;
 }
+.gridAbility {
+  grid-column-gap: var(--pico-grid-column-gap);
+  grid-row-gap: var(--pico-grid-row-gap);
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .gridAbility {
+    grid-template-columns: repeat(auto-fit, minmax(0%, 1fr));
+  }
+}
+
+.gridAbility>* {
+  min-width: 0;
+}
 
 .ImagesGrid {
   grid-column-gap: 2px;
@@ -3820,20 +3836,56 @@ p {
   filter: var(--svg-filter);
 }
 
+#weakness {
+  padding-left: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#weakness table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#weakness th,
+#weakness td {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+#weakness th {
+  background-color: #f2f2f2;
+}
 
 .WeaknessTypesParent {
-  display: flex;
-flex-wrap: wrap;
-gap: 10px;
-
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjust width as needed */
+  gap: 10px;
+  word-wrap: normal;
 }
+
 .WeaknessesTypes {
   border: 1px solid var(--pico-border-color);
   border-radius: 4px;
   padding: 10px;
   text-align: center;
-  /* background: transparent !important; */
-  width: 40px;
 }
 
 
+@media screen and (max-width: 768px) {
+  .ImagesGrid, #PokemonImages {
+    margin: 0;
+    padding: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  /* .ImageCards {
+    margin: 0;
+    padding: 0;
+  } */
+}
