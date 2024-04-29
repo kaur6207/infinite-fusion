@@ -14497,8 +14497,8 @@ const populateDom = (result) => {
   populateAbilities(pokemonOneAbilityElement, result.pokemonOneAbility, result.fusedPokemonImages.firstFusedPokemonName, result.fusedPokemonImages.firstCustomSpriteDexId, "PokemonOneAbilityHeading");
   populateAbilities(pokemonTwoAbilityElement, result.pokemonTwoAbility, result.fusedPokemonImages.secondFusedPokemonName, result.fusedPokemonImages.secondCustomSpriteDexId, "PokemonTwoAbilityHeading");
 
-  document.getElementById("PokemonOneNameWeakness").innerHTML = `${result.fusedPokemonImages.firstFusedPokemonName} Weaknesses`;
-  document.getElementById("PokemonTwoNameWeakness").innerHTML = `${result.fusedPokemonImages.secondFusedPokemonName} Weaknesses`;
+  document.getElementById("PokemonOneNameWeakness").innerHTML = `${result.fusedPokemonImages.firstFusedPokemonName}`;
+  document.getElementById("PokemonTwoNameWeakness").innerHTML = `${result.fusedPokemonImages.secondFusedPokemonName}`;
 
   document.getElementById("PokemonOne4XMultipliers").innerHTML = result.pokemonOneTypeWeaknesses["4x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
   document.getElementById("PokemonTwo4XMultipliers").innerHTML = result.pokemonTwoTypeWeaknesses["4x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');

@@ -1201,6 +1201,10 @@ button:is([aria-current]:not([aria-current=false])):focus,
   text-indent: 0;
 }
 
+table th {
+  background-color: var(--pico-table-header-background-color);
+}
+
 th,
 td {
   padding: calc(var(--pico-spacing) / 2) var(--pico-spacing);
@@ -3347,7 +3351,7 @@ tr {
   padding: 0.75rem;
   text-align: left;
   vertical-align: top;
-  border: 1px solid #ddddddb6;
+  border: 1.5px solid #bbbabab6;
 }
 
 table th {
@@ -3836,30 +3840,10 @@ p {
   filter: var(--svg-filter);
 }
 
-#weakness {
-  padding-left: 0px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  padding-right: 0px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
 
-#weakness table {
-  width: 100%;
-  border-collapse: collapse;
-}
 
-#weakness th,
-#weakness td {
-  border: 1px solid #dddddd;
-  text-align: center;
-  padding: 8px;
-}
 
-#weakness th {
-  background-color: #f2f2f2;
-}
+
 
 .WeaknessTypesParent {
   display: grid;
