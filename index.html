@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="text/javascript" src="/___vscode_livepreview_injected_script"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Infinite Fusion Calculator - v6 (Updated)</title>
+    <link rel="stylesheet" href="./app.css">
+</head>
+
+<body>
+    <header>
+        <nav class="container-fluid">
+            <ul class="logo">
+                <li><a href="/"><strong>Fusion Calc</strong></a></li>
+            </ul>
+            <ul class="navbar-links">
+                <li><a href="/sitemap.xml" class="contrast">Site Map</a></li>
+                <li><a href="/pages#about" class="contrast">About US</a></li>
+                <li><a href="/pages#privacy-policy" class="contrast">Privacy Policy</a></li>
+                <li><a href="/pages#disclaimer" class="contrast">Disclaimer</a></li>
+                <li><span class="close-btn" onclick="toggleMenu()">&times;</span></li>
+            </ul>
+            <div class="navbar-controls">
+                <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+                    <img id="sunIcon" src="./static/images/sun.svg" alt="light mode sun svg" style="display: none;">
+                    <img id="moonIcon" src="./static/images/moon.svg" alt="light mode moon svg" style="display: none;">
+                </div>
+                <span class="navbar-toggle" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container" style="max-width: 1000px;">
+        <article class="card">
+            <h1>Pokemon Infinite Fusion Calculator</h1>
+            <p>Mix two Pokémon to create your own fusion. Updated with sprite pack v97, featuring 121,080 custom
+                sprites. Enjoy endless possibilities!</p>
+        </article>
+        <article class="card" id="PokemonInput">
+            <div class="grid">
+                <div>
+                    <label for="FirstPokemon"><strong>First Pokemon</strong></label>
+                    <input id="FirstPokemon" type="text" list="FirstPokemonDatalist" name="search"
+                        placeholder="Search Pokemon" aria-label="Search" />
+                    <div id="FirstPokemonData">
+                        <datalist id="FirstPokemonDatalist">
+
+                        </datalist>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="Second"><strong>Second Pokemon</strong></label>
+                    <input id="SecondPokemon" type="text" list="SecondPokemonDatalist" name="search"
+                        placeholder="Search Pokemon" aria-label="Search" />
+                    <datalist id="SecondPokemonDatalist">
+                    </datalist>
+                </div>
+            </div>
+            <div class="grid">
+                <div role="button" id="FusePokemon">Fuse</div>
+                <div role="button" class="secondary" id="RandomPokemon">Random</div>
+                <div role="button" class="outline" id="Reset">Reset</div>
+            </div>
+        </article>
+        <article class="ImagesParentGrid border" id="PokemonImages" role="group">
+            <div class="PokemonOneImages" id="PokemonOneImages">
+                <p id="PokemonOneName" class="PokemonTextName">Pokemon Name</p>
+                <div class="ImagesGrid">
+                    <article class="ImageCards border">
+                        <header>Custom Sprite</header>
+                        <img src="" alt="" class="PokemonImagesChild" width="288" height="288"
+                            onerror="this.onerror=null;this.src='/static/images/not_found.jpg';">
+                        <footer class="PokemonOneTypes"></footer>
+                    </article>
+                    <article class="ImageCards border">
+                        <header>Autogen Sprite</header>
+                        <img src="" alt="" class="PokemonImagesChild" width="288" height="288"
+                            onerror="this.onerror=null;this.src='/static/images/not_found.jpg';">
+                        <footer class="PokemonOneTypes"></footer>
+                    </article>
+                </div>
+            </div>
+            <div class="PokemonTwoImages" id="PokemonTwoImages">
+                <p id="PokemonTwoName" class="PokemonTextName">Pokemon Name</p>
+                <div class="ImagesGrid">
+                    <article class="ImageCards border">
+                        <header>Custom Sprite</header>
+                        <img src="" alt="" class="PokemonImagesChild" width="288" height="288"
+                            onerror="this.onerror=null;this.src='/static/images/not_found.jpg';">
+                        <footer class="PokemonOneTypes"></footer>
+                    </article>
+                    <article class="ImageCards border">
+                        <header>Autogen Sprite</header>
+                        <img src="" alt="" class="PokemonImagesChild" width="288" height="288"
+                            onerror="this.onerror=null;this.src='/static/images/not_found.jpg';">
+                        <footer class="PokemonOneTypes"></footer>
+                    </article>
+                </div>
+            </div>
+        </article>
+
+
+        <article class="card">
+            <h2>Why I Made This </h2>
+            <hr>
+            <p>I love playing the Infinite Fusion game, but I've noticed that the data in the Infinite Fusion Calculator
+                isn't updated and the design looks outdated. So, I updated this Infinite Fusion Calculator with the
+                latest v97 sprite pack, including 121,080 custom sprites. It now features a modern design, works on all
+                devices responsively, and is open source. </p>
+            <!-- <div class="line"></div> -->
+            <h2>How Infinite Fusion Calculator Works?</h2>
+            <hr>
+            <p>The Pokemon Infinite Fusion Calculator is a powerful tool designed to assist trainers in creating unique
+                fusion combinations of Pokemon.</p>
+            <p>i updated all data of pokemons of v6 we have total 470 (pokemons + there versions) and ifxed all errors
+                now you can calculate infinite fusion with lastest pokemons</p>
+            <p>when you enter pokemons name and click calculate button we get dex ids of both pokemons and suing this
+                dex id calling to database and getting images states and so many data of calculations</p>
+            <p>this tool shows borth pokemons's custom sprites and autogen sprites with there with there dex ids</p>
+            <p>and cbelow images you will find states , pokemons types nad type effectivenss data of agensts your
+                chosedn pokemon's types</p>
+        </article>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
