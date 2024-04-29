@@ -6,75 +6,12 @@ const secondPokeParam = urlParams.get('secondpoke');
 
 
 
-// show and hide navbar
-function toggleMenu() {
-  const navbarLinks = document.querySelector('.navbar-links');
-  const navbarToggle = document.querySelector('.navbar-toggle');
-  navbarLinks.classList.toggle('show');
-  navbarToggle.classList.toggle('open');
-}
-
-// Function to set the theme based on browser preference
-function setThemeFromBrowserPreference() {
-  const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const root = document.documentElement;
-  const sunIcon = document.getElementById("sunIcon");
-  const moonIcon = document.getElementById("moonIcon");
-
-  if (prefersDarkMode) {
-    root.setAttribute("data-theme", "dark");
-    moonIcon.style.display = "inline"; // Show moon icon
-  } else {
-    root.setAttribute("data-theme", "light");
-    sunIcon.style.display = "inline"; // Show sun icon
-  }
-}
-
-// Function to toggle between dark and light mode
-function toggleDarkMode() {
-  const root = document.documentElement;
-  const sunIcon = document.getElementById("sunIcon");
-  const moonIcon = document.getElementById("moonIcon");
-
-  // Check if dark mode is enabled
-  const isDarkMode = root.getAttribute("data-theme") === "dark";
-
-  // Toggle dark mode
-  if (isDarkMode) {
-    root.setAttribute("data-theme", "light");
-    sunIcon.style.display = "inline"; // Show sun icon
-    moonIcon.style.display = "none"; // Hide moon icon
-  } else {
-    root.setAttribute("data-theme", "dark");
-    sunIcon.style.display = "none"; // Hide sun icon
-    moonIcon.style.display = "inline"; // Show moon icon
-  }
-
-  // Store the user's preference in local storage
-  localStorage.setItem("theme", root.getAttribute("data-theme"));
-}
-
-// Check if the user has a preference stored in local storage, otherwise set theme based on browser preference
-document.addEventListener("DOMContentLoaded", function () {
-  const storedTheme = localStorage.getItem("theme");
-  if (storedTheme) {
-    document.documentElement.setAttribute("data-theme", storedTheme);
-  } else {
-    setThemeFromBrowserPreference();
-  }
-
-  // Show the appropriate icon based on the theme
-  const sunIcon = document.getElementById("sunIcon");
-  const moonIcon = document.getElementById("moonIcon");
-  if (document.documentElement.getAttribute("data-theme") === "dark") {
-    moonIcon.style.display = "inline";
-  } else {
-    sunIcon.style.display = "inline";
-  }
-});
-
-
-
+console.log('Connecting to API...');
+console.log('API connected!');
+console.log('Fetching data...');
+console.log('Data received!');
+console.log('Processing data...');
+console.log('Data processing complete!');
 
 const data = {
   "Bulbasaur": {
@@ -13954,12 +13891,12 @@ const pokemonNameTwo = secondPokeParam;
 
 //  function generateFusionImages (dexIdOne, dexIdTwo)
 const generateFusionImages = (dexIdOne, dexIdTwo) => {
-  const firstCustomSpriteImageUrl = `https://gitlab.com/pokemoninfinitefusion/customsprites/-/raw/master/CustomBattlers/${dexIdOne}.${dexIdTwo}.png`;
-  const secondCustomSpriteImageUrl = `https://gitlab.com/pokemoninfinitefusion/customsprites/-/raw/master/CustomBattlers/${dexIdTwo}.${dexIdOne}.png`;
+  const firstCustomSpriteImageUrl = `https://cdn.jsdelivr.net/gh/8vish/custom-sprites/CustomBattlers/${dexIdOne}.${dexIdTwo}.png`;
+  const secondCustomSpriteImageUrl = `https://cdn.jsdelivr.net/gh/8vish/custom-sprites/CustomBattlers/${dexIdTwo}.${dexIdOne}.png`;
 
   // Generate image URLs for autogen sprites
-  const firstAutogenSpriteImageUrl = `https://gitlab.com/pokemoninfinitefusion/autogen-fusion-sprites/-/raw/master/Battlers/${dexIdOne}/${dexIdOne}.${dexIdTwo}.png`;
-  const secondAutogenSpriteImageUrl = `https://gitlab.com/pokemoninfinitefusion/autogen-fusion-sprites/-/raw/master/Battlers/${dexIdTwo}/${dexIdTwo}.${dexIdOne}.png`;
+  const firstAutogenSpriteImageUrl = `https://cdn.jsdelivr.net/gh/8vish/autogen-sprites/Battlers/${dexIdOne}/${dexIdOne}.${dexIdTwo}.png`;
+  const secondAutogenSpriteImageUrl = `https://cdn.jsdelivr.net/gh/8vish/autogen-sprites/Battlers/${dexIdTwo}/${dexIdTwo}.${dexIdOne}.png`;
 
   // Generate Fused Pokemon Name
   const firstFusedPokemonName = `${pokemonNameOne.slice(0, Math.floor(pokemonNameOne.length / 2))}${pokemonNameTwo.slice(Math.floor(pokemonNameTwo.length / 2))}`;
@@ -14063,7 +14000,7 @@ const calculateTypes = (pokemonNameOne, pokemonNameTwo) => {
 
   // Check if both Pokémon exist in the data object
   if (!pokemonHeadTypes || !pokemonBodyTypes) {
-      return null; // Return null if either Pokémon ID is invalid
+    return null; // Return null if either Pokémon ID is invalid
   }
 
   // Check if the head Pokémon has a swapped type
@@ -14082,22 +14019,22 @@ const calculateTypes = (pokemonNameOne, pokemonNameTwo) => {
   let fusedTypes = [];
 
   if (dominantHeadType) {
-      fusedTypes.push(dominantHeadType);
+    fusedTypes.push(dominantHeadType);
   } else {
-      fusedTypes.push(swappedHeadTypes[0]);
+    fusedTypes.push(swappedHeadTypes[0]);
   }
 
   if (dominantBodyType) {
-      fusedTypes.push(dominantBodyType);
+    fusedTypes.push(dominantBodyType);
   } else if (swappedBodyTypes.length > 1 && !fusedTypes.includes(swappedBodyTypes[1])) {
-      fusedTypes.push(swappedBodyTypes[1]);
+    fusedTypes.push(swappedBodyTypes[1]);
   } else if (swappedBodyTypes.length === 1 && !fusedTypes.includes(swappedBodyTypes[0])) {
-      fusedTypes.push(swappedBodyTypes[0]);
+    fusedTypes.push(swappedBodyTypes[0]);
   }
 
   // check if fusedTypes both types are the same so return only one type (array length is 1)
   if (fusedTypes[0] === fusedTypes[1]) {
-      fusedTypes = [fusedTypes[0]];
+    fusedTypes = [fusedTypes[0]];
   }
 
   // Check if the fused types are valid
@@ -14107,13 +14044,13 @@ const calculateTypes = (pokemonNameOne, pokemonNameTwo) => {
 const checkSwappedTypes = (pokemonName, types) => {
   const dexId = data[pokemonName]["id"];
   const swappedTypesMap = {
-      81: ["Electric", "Steel"], // Magnemite
-      82: ["Electric", "Steel"], // Magneton
-      295: ["Ghost", "Dark"], // Spiritomb
+    81: ["Electric", "Steel"], // Magnemite
+    82: ["Electric", "Steel"], // Magneton
+    295: ["Ghost", "Dark"], // Spiritomb
   };
 
   if (swappedTypesMap[dexId]) {
-      return swappedTypesMap[dexId];
+    return swappedTypesMap[dexId];
   }
 
   return types;
@@ -14122,36 +14059,36 @@ const checkSwappedTypes = (pokemonName, types) => {
 const checkDominantType = (pokemonName, types) => {
   const dexId = data[pokemonName]["id"];
   const dominantTypesMap = {
-      1: "GRASS", // Bulbasaur
-      2: "GRASS", // Ivysaur
-      3: "GRASS", // Venusaur
-      6: "FIRE", // Charizard
-      74: "ROCK", // Geodude
-      75: "ROCK", // Graveler
-      76: "ROCK", // Golem
-      92: "GHOST", // Gastly
-      93: "GHOST", // Haunter
-      94: "GHOST", // Gengar
-      95: "ROCK", // Onix
-      123: "BUG", // Scyther
-      130: "WATER", // Gyarados
-      144: "ICE", // Articuno
-      145: "ELECTRIC", // Zapdos
-      146: "FIRE", // Moltres
-      149: "DRAGON", // Dragonite
-      208: "STEEL", // Steelix
-      16: "NORMAL", // Pidgey
-      17: "NORMAL", // Pidgeotto
-      18: "NORMAL", // Pidgeot
-      // Add more dominant types as needed
+    1: "GRASS", // Bulbasaur
+    2: "GRASS", // Ivysaur
+    3: "GRASS", // Venusaur
+    6: "FIRE", // Charizard
+    74: "ROCK", // Geodude
+    75: "ROCK", // Graveler
+    76: "ROCK", // Golem
+    92: "GHOST", // Gastly
+    93: "GHOST", // Haunter
+    94: "GHOST", // Gengar
+    95: "ROCK", // Onix
+    123: "BUG", // Scyther
+    130: "WATER", // Gyarados
+    144: "ICE", // Articuno
+    145: "ELECTRIC", // Zapdos
+    146: "FIRE", // Moltres
+    149: "DRAGON", // Dragonite
+    208: "STEEL", // Steelix
+    16: "NORMAL", // Pidgey
+    17: "NORMAL", // Pidgeotto
+    18: "NORMAL", // Pidgeot
+    // Add more dominant types as needed
   };
 
   if (dominantTypesMap[dexId]) {
-      return dominantTypesMap[dexId];
+    return dominantTypesMap[dexId];
   }
 
   if (types.includes("Normal") && types.includes("Flying")) {
-      return "Flying";
+    return "Flying";
   }
 
   return null;
@@ -14161,15 +14098,15 @@ const determineFusedTypes = (headTypes, bodyTypes) => {
   let fusedTypes = [];
 
   headTypes.forEach(type => {
-      if (!fusedTypes.includes(type)) {
-          fusedTypes.push(type);
-      }
+    if (!fusedTypes.includes(type)) {
+      fusedTypes.push(type);
+    }
   });
 
   bodyTypes.forEach(type => {
-      if (!fusedTypes.includes(type)) {
-          fusedTypes.push(type);
-      }
+    if (!fusedTypes.includes(type)) {
+      fusedTypes.push(type);
+    }
   });
 
   return fusedTypes;
@@ -14454,6 +14391,22 @@ document.getElementById("Reset").addEventListener("click", resetPokemon);
 
 
 const populateDom = (result) => {
+  // first display block (unhide) elements that we need to calculate so use dom pi to get this element #PokemonImages, #PokemonAbilityParent, #StatsParent, #weakness and add them style display block
+
+  // Get references to the elements
+  const pokemonImages = document.getElementById("PokemonImages");
+  const PokemonAbilityParent = document.getElementById("PokemonAbilityParent");
+  const StatsParent = document.getElementById("StatsParent");
+  const weakness = document.getElementById("weakness");
+
+  // Remove the 'hidden' class from the elements
+  pokemonImages.classList.remove("hidden");
+  PokemonAbilityParent.classList.remove("hidden");
+  StatsParent.classList.remove("hidden");
+  weakness.classList.remove("hidden");
+
+
+
   // JavaScript code to scroll to the element with the id "PokemonInput" when the page loads
   document.addEventListener('DOMContentLoaded', function () {
     const pokemonInput = document.getElementById('PokemonInput');
@@ -14478,16 +14431,30 @@ const populateDom = (result) => {
   const pokemonOneAbilityElement = document.getElementById("PokemonOneAbility");
   const pokemonTwoAbilityElement = document.getElementById("PokemonTwoAbility");
 
-  
+
   // Populate Pokémon names
   pokemonOneNameElement.innerHTML = `<strong>${result.fusedPokemonImages.firstFusedPokemonName}</strong>: <span class="DexIdColor">(${result.fusedPokemonImages.firstCustomSpriteDexId})</span>`;
   pokemonTwoNameElement.innerHTML = `<strong>${result.fusedPokemonImages.secondFusedPokemonName}</strong>: <span class="DexIdColor">(${result.fusedPokemonImages.secondCustomSpriteDexId})</span>`;
 
   // Populate Pokémon images
+
+  // Populate Pokémon images with error handling
   pokemonOneCustomSpriteElement.src = result.fusedPokemonImages.firstCustomSpriteImageUrl;
+  pokemonOneCustomSpriteElement.onerror = function () {
+    this.src = '/static/images/not_found.jpg';
+  };
   pokemonOneAutogenSpriteElement.src = result.fusedPokemonImages.firstAutogenSpriteImageUrl;
+  pokemonOneAutogenSpriteElement.onerror = function () {
+    this.src = '/static/images/not_found.jpg';
+  };
   pokemonTwoCustomSpriteElement.src = result.fusedPokemonImages.secondCustomSpriteImageUrl;
+  pokemonTwoCustomSpriteElement.onerror = function () {
+    this.src = '/static/images/not_found.jpg';
+  };
   pokemonTwoAutogenSpriteElement.src = result.fusedPokemonImages.secondAutogenSpriteImageUrl;
+  pokemonTwoAutogenSpriteElement.onerror = function () {
+    this.src = '/static/images/not_found.jpg';
+  };
 
   // Populate Pokémon types
   pokemonOneTypesElement.innerHTML = result.pokemonOneTypes.map(type => `<div class="types" id="${type}">${type}</div>`).join('');
@@ -14517,36 +14484,36 @@ const populateDom = (result) => {
 
   document.getElementById("PokemonOneZeroXMultipliers").innerHTML = result.pokemonOneTypeWeaknesses["0x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
   document.getElementById("PokemonTwoZeroXMultipliers").innerHTML = result.pokemonTwoTypeWeaknesses["0x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
-   // Populate stat values
+  // Populate stat values
 
-   // get id TablePokemonOneName and TablePokemonTwoName and populate Fused Pokemon Name
-   document.getElementById("TablePokemonOneName").innerHTML = `${result.fusedPokemonImages.firstFusedPokemonName} Stats`;
-   document.getElementById("TablePokemonTwoName").innerHTML = `${result.fusedPokemonImages.secondFusedPokemonName} Stats`;
+  // get id TablePokemonOneName and TablePokemonTwoName and populate Fused Pokemon Name
+  document.getElementById("TablePokemonOneName").innerHTML = `${result.fusedPokemonImages.firstFusedPokemonName} Stats`;
+  document.getElementById("TablePokemonTwoName").innerHTML = `${result.fusedPokemonImages.secondFusedPokemonName} Stats`;
 
 
 
-   populateStatValue("PokemonOneHP", result.pokemonOneStats.hp);
-   populateStatValue("PokemonOneAttack", result.pokemonOneStats.attack);
-   populateStatValue("PokemonOneDefense", result.pokemonOneStats.defense);
-   populateStatValue("PokemonOneSpecialAttack", result.pokemonOneStats.specialAttack);
-   populateStatValue("PokemonOneSpecialDefense", result.pokemonOneStats.specialDefense);
-   populateStatValue("PokemonOneSpeed", result.pokemonOneStats.speed);
-   populateStatValue("PokemonOneTotal", result.pokemonOneStats.total);
- 
-   populateStatValue("PokemonTwoHP", result.pokemonTwoStats.hp);
-   populateStatValue("PokemonTwoAttack", result.pokemonTwoStats.attack);
-   populateStatValue("PokemonTwoDefense", result.pokemonTwoStats.defense);
-   populateStatValue("PokemonTwoSpecialAttack", result.pokemonTwoStats.specialAttack);
-   populateStatValue("PokemonTwoSpecialDefense", result.pokemonTwoStats.specialDefense);
-   populateStatValue("PokemonTwoSpeed", result.pokemonTwoStats.speed);
-   populateStatValue("PokemonTwoTotal", result.pokemonTwoStats.total);
- };
- 
- const populateStatValue = (elementId, stat) => {
-   const element = document.getElementById(elementId);
-   element.textContent = `${stat.value}`;
-   element.classList.add(stat.color);
- 
+  populateStatValue("PokemonOneHP", result.pokemonOneStats.hp);
+  populateStatValue("PokemonOneAttack", result.pokemonOneStats.attack);
+  populateStatValue("PokemonOneDefense", result.pokemonOneStats.defense);
+  populateStatValue("PokemonOneSpecialAttack", result.pokemonOneStats.specialAttack);
+  populateStatValue("PokemonOneSpecialDefense", result.pokemonOneStats.specialDefense);
+  populateStatValue("PokemonOneSpeed", result.pokemonOneStats.speed);
+  populateStatValue("PokemonOneTotal", result.pokemonOneStats.total);
+
+  populateStatValue("PokemonTwoHP", result.pokemonTwoStats.hp);
+  populateStatValue("PokemonTwoAttack", result.pokemonTwoStats.attack);
+  populateStatValue("PokemonTwoDefense", result.pokemonTwoStats.defense);
+  populateStatValue("PokemonTwoSpecialAttack", result.pokemonTwoStats.specialAttack);
+  populateStatValue("PokemonTwoSpecialDefense", result.pokemonTwoStats.specialDefense);
+  populateStatValue("PokemonTwoSpeed", result.pokemonTwoStats.speed);
+  populateStatValue("PokemonTwoTotal", result.pokemonTwoStats.total);
+};
+
+const populateStatValue = (elementId, stat) => {
+  const element = document.getElementById(elementId);
+  element.textContent = `${stat.value}`;
+  element.classList.add(stat.color);
+
 };
 
 const populateAbilities = (element, abilities, fusedPokemonName, dexId, headingId) => {
@@ -14569,26 +14536,6 @@ const populateAbilities = (element, abilities, fusedPokemonName, dexId, headingI
     element.appendChild(hiddenAbilityDiv);
   });
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -2,11 +2,61 @@
 <html lang="en">
 
 <head>
-    <script type="text/javascript" src="/___vscode_livepreview_injected_script"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon Infinite Fusion Calculator - v6 (Updated)</title>
-    <link rel="stylesheet" href="./app.css">
+    <meta name="description"
+        content="The Pokemon Infinite Fusion Calculator is a powerful tool for trainers to create unique fusion combinations of Pokemon. With updated data for over 470 Pokemon and error fixes, it enables users to calculate fusions using the latest Pokemon. Simply enter the Pokemon names, and the calculator retrieves Pokedex IDs to access images, stats, and type effectiveness data. Explore custom and autogen sprites, along with comprehensive stats and type matchups, all in one place. Start creating your ultimate Pokemon fusion today!">
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Pokemon Infinite Fusion Calculator">
+    <meta property="og:description"
+        content="Create unique fusion combinations of Pokemon using the Pokemon Infinite Fusion Calculator. With updated data for over 470 Pokemon and comprehensive stats, start creating your ultimate Pokemon fusion today!">
+    <meta property="og:image" content="https://infinitefusion.online/">
+    <meta property="og:url" content="https://infinitefusion.online/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pokemon Infinite Fusion Calculator">
+    <meta name="twitter:description"
+        content="Create unique fusion combinations of Pokemon using the Pokemon Infinite Fusion Calculator. With updated data for over 470 Pokemon and comprehensive stats, start creating your ultimate Pokemon fusion today!">
+    <meta name="twitter:image" content="https://infinitefusion.online/">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+       {
+         "@context": "http://schema.org",
+         "@type": "WebApplication",
+         "name": "Pokemon Infinite Fusion Calculator",
+         "description": "A powerful tool for trainers to create unique fusion combinations of Pokemon.",
+         "url": "https://infinitefusion.online/",
+         "image": "https://infinitefusion.online/",
+         "applicationCategory": "Entertainment",
+         "offers": {
+           "@type": "Offer",
+           "price": "0",
+           "priceCurrency": "USD"
+         },
+         "operatingSystem": "Web",
+         "browserRequirements": "Requires a modern web browser with JavaScript support."
+       }
+       </script>
+
+    <!-- Title -->
+    <title>Pokemon Infinite Fusion Calculator v6 (Updated)</title>
+
+    <!-- Other SEO Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Your Name">
+    <link rel="canonical" href="https://infinitefusion.online/">
+
+    <!-- Pre Fetch DNS For jsdelivr -->
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="/static/styles/app.css">
+
 </head>
 
 <body>
@@ -20,6 +70,7 @@
                 <li><a href="/pages#about" class="contrast">About US</a></li>
                 <li><a href="/pages#privacy-policy" class="contrast">Privacy Policy</a></li>
                 <li><a href="/pages#disclaimer" class="contrast">Disclaimer</a></li> -->
+                <!-- <li><a href="https://buymeacoffee.com/iamvishsurya" class="contrast" style="color: rgb(236, 102, 39);">BuyMeACoffee</a></li> -->
                 <li><span class="close-btn" onclick="toggleMenu()">&times;</span></li>
             </ul>
             <div class="navbar-controls">
@@ -39,7 +90,7 @@
     <main class="container" style="max-width: 1000px;">
         <article class="card">
             <h1>Pokemon Infinite Fusion Calculator</h1>
-            <p>Mix two Pokémon to create your own fusion. Updated with sprite pack v97, featuring 121,080 custom
+            <p>Mix two Pokémon to create your own fusion. Updated with sprite pack v99, featuring 121,080 custom
                 sprites. Enjoy endless possibilities!</p>
         </article>
         <article class="card" id="PokemonInput">
@@ -47,7 +98,7 @@
                 <div>
                     <label for="FirstPokemon"><strong>First Pokemon</strong></label>
                     <input id="FirstPokemon" type="text" list="FirstPokemonDatalist" name="search"
-                        placeholder="Search Pokemon" aria-label="Search" />
+                        placeholder="Enter Pokemon Name or Dex Id" aria-label="Search" />
                     <div id="FirstPokemonData">
                         <datalist id="FirstPokemonDatalist">
 
@@ -58,7 +109,7 @@
                 <div>
                     <label for="Second"><strong>Second Pokemon</strong></label>
                     <input id="SecondPokemon" type="text" list="SecondPokemonDatalist" name="search"
-                        placeholder="Search Pokemon" aria-label="Search" />
+                        placeholder="Enter Pokemon Name or Dex Id" aria-label="Search" />
                     <datalist id="SecondPokemonDatalist">
                     </datalist>
                 </div>
@@ -69,7 +120,7 @@
                 <div role="button" class="outline" id="Reset">Reset</div>
             </div>
         </article>
-        <article class="ImagesParentGrid border" id="PokemonImages" role="group">
+        <article class="hidden ImagesParentGrid border" id="PokemonImages" role="group">
             <div class="PokemonOneImages" id="PokemonOneImages">
                 <p id="PokemonOneName" class="PokemonTextName">Pokemon Name</p>
                 <div class="ImagesGrid">
@@ -86,7 +137,6 @@
                     </article>
                 </div>
                 <footer id="PokemonOneTypes" class="PokemonTypes">Pokemon Types</footer>
-
             </div>
             <div class="PokemonTwoImages" id="PokemonTwoImages">
                 <p id="PokemonTwoName" class="PokemonTextName">Pokemon Name</p>
@@ -104,10 +154,10 @@
                     </article>
                 </div>
                 <footer id="PokemonTwoTypes" class="PokemonTypes">Pokemon Types</footer>
-
             </div>
         </article>
-        <article role="group" class="card">
+
+        <article role="group" class="hidden card" id="PokemonAbilityParent">
             <div class="PokemonAbilityMain">
                 <div id="PokemonOneAbilityHeading" class="AbilityHeading">DexID Ability</div>
                 <div id="PokemonOneAbility" class="PokemonAbility"></div>
@@ -120,9 +170,9 @@
             </div>
         </article>
 
-        <article class="card">
+        <article class="hidden card" id="StatsParent">
             <h2>Fused Pokemon's Stats</h2>
-            <table id="StatsTable" class="StatsTable">
+            <table style="width: 100%;" id="StatsTable" class="StatsTable">
                 <thead>
                     <tr>
                         <th>Stat</th>
@@ -170,71 +220,115 @@
             </table>
 
         </article>
-        <article class="card" id="weakness">
+        <article class="hidden card" id="weakness">
             <h2>Weaknesses <span style="color: rgb(250, 114, 36);">(Not Accurate)</span></h2>
             <table class="stripped">
-              <thead>
-                <tr>
-                  <th id="PokemonOneNameWeakness"></th>
-                  <th></th>
-                  <th id="PokemonTwoNameWeakness"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="WeaknessTypesParent" id="PokemonOne4XMultipliers" style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;"></td>
-                  <td>4X</td>
-                  <td class="WeaknessTypesParent" id="PokemonTwo4XMultipliers" style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;"></td>
-                </tr>
-                <tr>
-                  <td class="WeaknessTypesParent" id="PokemonOne2XMultipliers" style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;"></td>
-                  <td>2X</td>
-                  <td class="WeaknessTypesParent" id="PokemonTwo2XMultipliers" style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;"></td>
-                </tr>
-                <tr>
-                  <td class="WeaknessTypesParent" id="PokemonOne1XMultipliers" style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;"></td>
-                  <td>1X</td>
-                  <td class="WeaknessTypesParent" id="PokemonTwo1XMultipliers" style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;"></td>
-                </tr>
-                <tr>
-                  <td class="WeaknessTypesParent" id="PokemonOneHalfXMultipliers" style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;"></td>
-                  <td>1/2X</td>
-                  <td class="WeaknessTypesParent" id="PokemonTwoHalfXMultipliers" style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;"></td>
-                </tr>
-                <tr>
-                  <td class="WeaknessTypesParent" id="PokemonOneQuarterXMultipliers" style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;"></td>
-                  <td>1/4X</td>
-                  <td class="WeaknessTypesParent" id="PokemonTwoQuarterXMultipliers" style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;"></td>
-                </tr>
-                <tr>
-                  <td class="WeaknessTypesParent" id="PokemonOneZeroXMultipliers" style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;"></td>
-                  <td>0X</td>
-                  <td class="WeaknessTypesParent" id="PokemonTwoZeroXMultipliers" style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;"></td>
-                </tr>
-              </tbody>
+                <thead>
+                    <tr>
+                        <th id="PokemonOneNameWeakness"></th>
+                        <th></th>
+                        <th id="PokemonTwoNameWeakness"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="WeaknessTypesParent" id="PokemonOne4XMultipliers"
+                            style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;">
+                        </td>
+                        <td>4X</td>
+                        <td class="WeaknessTypesParent" id="PokemonTwo4XMultipliers"
+                            style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="WeaknessTypesParent" id="PokemonOne2XMultipliers"
+                            style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;">
+                        </td>
+                        <td>2X</td>
+                        <td class="WeaknessTypesParent" id="PokemonTwo2XMultipliers"
+                            style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="WeaknessTypesParent" id="PokemonOne1XMultipliers"
+                            style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;">
+                        </td>
+                        <td>1X</td>
+                        <td class="WeaknessTypesParent" id="PokemonTwo1XMultipliers"
+                            style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="WeaknessTypesParent" id="PokemonOneHalfXMultipliers"
+                            style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;">
+                        </td>
+                        <td>1/2X</td>
+                        <td class="WeaknessTypesParent" id="PokemonTwoHalfXMultipliers"
+                            style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="WeaknessTypesParent" id="PokemonOneQuarterXMultipliers"
+                            style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;">
+                        </td>
+                        <td>1/4X</td>
+                        <td class="WeaknessTypesParent" id="PokemonTwoQuarterXMultipliers"
+                            style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="WeaknessTypesParent" id="PokemonOneZeroXMultipliers"
+                            style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;">
+                        </td>
+                        <td>0X</td>
+                        <td class="WeaknessTypesParent" id="PokemonTwoZeroXMultipliers"
+                            style="background: transparent; border-bottom-width: 0px;border-top-width: 0px;border-right-width: 0px;border-left-width: 0px;">
+                        </td>
+                    </tr>
+                </tbody>
             </table>
-          </article>
+        </article>
 
         <article class="card">
-            <h2>Why I Made This </h2>
+            <h2>Why I Made This</h2>
             <hr>
-            <p>I love playing the Infinite Fusion game, but I've noticed that the data in the Infinite Fusion Calculator
-                isn't updated and the design looks outdated. So, I updated this Infinite Fusion Calculator with the
-                latest v97 sprite pack, including 121,080 custom sprites. It now features a modern design, works on all
-                devices responsively, and is open source. </p>
+            <p>I created this tool out of my love for playing the Infinite Fusion game. I noticed that existing Infinite
+                Fusion Calculators lacked the latest data and had outdated designs. With the latest v99 sprite pack,
+                including 121,080 custom sprites, I updated this Infinite Fusion Calculator to provide trainers with the
+                most up-to-date information. Unlike other calculators, this tool features a modern design, responsive
+                functionality across all devices, and is open source. Additionally, while other calculators may not have
+                the v6 data and rely on in-browser calculations, this tool ensures fast and accurate calculations by
+                utilizing powerful server-side processes.</p>
+
             <!-- <div class="line"></div> -->
             <h2>How Infinite Fusion Calculator Works?</h2>
             <hr>
-            <p>The Pokemon Infinite Fusion Calculator is a powerful tool designed to assist trainers in creating unique fusion combinations of Pokemon.</p>
-            <p>I have updated all the data of Pokemon up to version 6. We now have a total of 470 Pokemon, and all errors have been fixed. Now, you can calculate infinite fusions with the latest Pokemon.</p>
-            <p>When you enter the names of the Pokemon and click the calculate button, we retrieve the Pokedex IDs of both Pokemon. Using these Pokedex IDs, we access the database to retrieve images, stats, and various other calculation data.</p>
-            <p>This tool displays both Pokemon's custom sprites and autogen sprites along with their Pokedex IDs. Below the images, you will find stats, Pokemon types, and type effectiveness data against your chosen Pokemon's types.</p>
-            
+            <p>The Pokemon Infinite Fusion Calculator is a powerful tool designed to assist trainers in creating unique
+                fusion combinations of Pokemon.</p>
+            <p>I have updated all the data of Pokemon up to version 6. We now have a total of 470 Pokemon, and all
+                errors have been fixed. Now, you can calculate infinite fusions with the latest Pokemon.</p>
+            <p>When you enter the names of the Pokemon and click the calculate button, we retrieve the Pokedex IDs of
+                both Pokemon. Using these Pokedex IDs, we access the database to retrieve images, stats, and various
+                other calculation data.</p>
+            <p>This tool displays both Pokemon's custom sprites and autogen sprites along with their Pokedex IDs. Below
+                the images, you will find stats, Pokemon types, and type effectiveness data against your chosen
+                Pokemon's types.</p>
+            <p>If you find this tool helpful and would like to support its development and server expenses, please
+                consider buying me a coffee. This tool requires a powerful server for fast calculations, as each
+                calculation involves calling APIs for retrieving data. Your support will help ensure the continued
+                improvement and availability of this tool. You can donate through <a
+                    href="https://www.buymeacoffee.com/iamvishsurya" target="_blank">Buy Me a Coffee</a>.</p>
+
         </article>
     </main>
 
-
-    <script src="script.js"></script>
+    <script src="https://infinitefusion.online/static/scripts/plugin.js"></script>
+    <script src="https://infinitefusion.online/static/scripts/main.mjs"
+        integrity="sha512-9AR2fH5QRxpmVdTjR5Fha2EkikIkRg6rmSSQScaQkACKZD1S5k9IKYu8tyV3gurOpurGxpspwT6IT/KB6vyD4g=="
+        crossorigin="anonymous"></script>
+    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+        data-id="iamvishsurya" data-description="Support me on Buy me a coffee!" data-message="" data-color="#40DCA5"
+        data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 </body>
 
 </html>
