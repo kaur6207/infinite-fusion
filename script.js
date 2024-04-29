@@ -14496,6 +14496,57 @@ const populateDom = (result) => {
   // Populate Pokémon abilities
   populateAbilities(pokemonOneAbilityElement, result.pokemonOneAbility, result.fusedPokemonImages.firstFusedPokemonName, result.fusedPokemonImages.firstCustomSpriteDexId, "PokemonOneAbilityHeading");
   populateAbilities(pokemonTwoAbilityElement, result.pokemonTwoAbility, result.fusedPokemonImages.secondFusedPokemonName, result.fusedPokemonImages.secondCustomSpriteDexId, "PokemonTwoAbilityHeading");
+
+  document.getElementById("PokemonOneNameWeakness").innerHTML = `${result.fusedPokemonImages.firstFusedPokemonName} Weaknesses`;
+  document.getElementById("PokemonTwoNameWeakness").innerHTML = `${result.fusedPokemonImages.secondFusedPokemonName} Weaknesses`;
+
+  document.getElementById("PokemonOne4XMultipliers").innerHTML = result.pokemonOneTypeWeaknesses["4x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
+  document.getElementById("PokemonTwo4XMultipliers").innerHTML = result.pokemonTwoTypeWeaknesses["4x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
+
+  document.getElementById("PokemonOne2XMultipliers").innerHTML = result.pokemonOneTypeWeaknesses["2x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
+  document.getElementById("PokemonTwo2XMultipliers").innerHTML = result.pokemonTwoTypeWeaknesses["2x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
+
+  document.getElementById("PokemonOne1XMultipliers").innerHTML = result.pokemonOneTypeWeaknesses["1x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
+  document.getElementById("PokemonTwo1XMultipliers").innerHTML = result.pokemonTwoTypeWeaknesses["1x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
+
+  document.getElementById("PokemonOneHalfXMultipliers").innerHTML = result.pokemonOneTypeWeaknesses["0.5x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
+  document.getElementById("PokemonTwoHalfXMultipliers").innerHTML = result.pokemonTwoTypeWeaknesses["0.5x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
+
+  document.getElementById("PokemonOneQuarterXMultipliers").innerHTML = result.pokemonOneTypeWeaknesses["0.25x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
+  document.getElementById("PokemonTwoQuarterXMultipliers").innerHTML = result.pokemonTwoTypeWeaknesses["0.25x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
+
+  document.getElementById("PokemonOneZeroXMultipliers").innerHTML = result.pokemonOneTypeWeaknesses["0x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
+  document.getElementById("PokemonTwoZeroXMultipliers").innerHTML = result.pokemonTwoTypeWeaknesses["0x"].map(type => `<div class="WeaknessesTypes" id="${type}">${type}</div>`).join('');
+   // Populate stat values
+
+   // get id TablePokemonOneName and TablePokemonTwoName and populate Fused Pokemon Name
+   document.getElementById("TablePokemonOneName").innerHTML = `${result.fusedPokemonImages.firstFusedPokemonName} Stats`;
+   document.getElementById("TablePokemonTwoName").innerHTML = `${result.fusedPokemonImages.secondFusedPokemonName} Stats`;
+
+
+
+   populateStatValue("PokemonOneHP", result.pokemonOneStats.hp);
+   populateStatValue("PokemonOneAttack", result.pokemonOneStats.attack);
+   populateStatValue("PokemonOneDefense", result.pokemonOneStats.defense);
+   populateStatValue("PokemonOneSpecialAttack", result.pokemonOneStats.specialAttack);
+   populateStatValue("PokemonOneSpecialDefense", result.pokemonOneStats.specialDefense);
+   populateStatValue("PokemonOneSpeed", result.pokemonOneStats.speed);
+   populateStatValue("PokemonOneTotal", result.pokemonOneStats.total);
+ 
+   populateStatValue("PokemonTwoHP", result.pokemonTwoStats.hp);
+   populateStatValue("PokemonTwoAttack", result.pokemonTwoStats.attack);
+   populateStatValue("PokemonTwoDefense", result.pokemonTwoStats.defense);
+   populateStatValue("PokemonTwoSpecialAttack", result.pokemonTwoStats.specialAttack);
+   populateStatValue("PokemonTwoSpecialDefense", result.pokemonTwoStats.specialDefense);
+   populateStatValue("PokemonTwoSpeed", result.pokemonTwoStats.speed);
+   populateStatValue("PokemonTwoTotal", result.pokemonTwoStats.total);
+ };
+ 
+ const populateStatValue = (elementId, stat) => {
+   const element = document.getElementById(elementId);
+   element.textContent = `${stat.value}`;
+   element.classList.add(stat.color);
+ 
 };
 
 const populateAbilities = (element, abilities, fusedPokemonName, dexId, headingId) => {
@@ -14514,7 +14565,7 @@ const populateAbilities = (element, abilities, fusedPokemonName, dexId, headingI
     const hiddenAbilityDiv = document.createElement('div');
     hiddenAbilityDiv.className = 'ability';
     hiddenAbilityDiv.id = `${ability}`;
-    hiddenAbilityDiv.innerHTML = `${ability}<span class="HiddenIcon">&nbsp;<img width="18" height="18" src="/static/images/close-eye.svg" alt="Close Eye SVG Icon"></span>`;
+    hiddenAbilityDiv.innerHTML = `${ability}<span class="HiddenIcon">&nbsp;<img class="HiddenSVG" width="20" height="20" src="/static/images/close-eye.svg" alt="Close Eye SVG Icon"></span>`;
     element.appendChild(hiddenAbilityDiv);
   });
 };

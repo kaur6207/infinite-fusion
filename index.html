@@ -115,30 +115,104 @@
             <div class="PokemonAbilityMain">
                 <div id="PokemonTwoAbilityHeading" class="AbilityHeading">DexID Ability</div>
                 <div id="PokemonTwoAbility" class="PokemonAbility">
-                   
+
                 </div>
             </div>
         </article>
 
         <article class="card">
-            <table>
+            <table id="StatsTable" class="StatsTable">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th id="PokemonOneNameTable"></th>
-                        <th id="PokemonTwoNameTable"></th>
+                        <th>Stat</th>
+                        <th id="TablePokemonOneName">Pokemon One</th>
+                        <th id="TablePokemonTwoName">Pokemon Two</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th></th>
-                        <td></td>
-                        <td></td>
+                        <td>HP</td>
+                        <td id="PokemonOneHP"></td>
+                        <td id="PokemonTwoHP"></td>
+                    </tr>
+                    <tr>
+                        <td>Attack</td>
+                        <td id="PokemonOneAttack"></td>
+                        <td id="PokemonTwoAttack"></td>
+                    </tr>
+                    <tr>
+                        <td>Defense</td>
+                        <td id="PokemonOneDefense"></td>
+                        <td id="PokemonTwoDefense"></td>
+                    </tr>
+                    <tr>
+                        <td>Special Attack</td>
+                        <td id="PokemonOneSpecialAttack"></td>
+                        <td id="PokemonTwoSpecialAttack"></td>
+                    </tr>
+                    <tr>
+                        <td>Special Defense</td>
+                        <td id="PokemonOneSpecialDefense"></td>
+                        <td id="PokemonTwoSpecialDefense"></td>
+                    </tr>
+                    <tr>
+                        <td>Speed</td>
+                        <td id="PokemonOneSpeed"></td>
+                        <td id="PokemonTwoSpeed"></td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td id="PokemonOneTotal"></td>
+                        <td id="PokemonTwoTotal"></td>
                     </tr>
                 </tbody>
             </table>
-        </article>
 
+        </article>
+        <article class="card" id="weakness">
+            <h2>Weaknesses</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th id="PokemonOneNameWeakness"></th>
+                  <th>Multipliers</th>
+                  <th id="PokemonTwoNameWeakness"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="WeaknessTypesParent" id="PokemonOne4XMultipliers"></td>
+                  <td>4X</td>
+                  <td class="WeaknessTypesParent" id="PokemonTwo4XMultipliers"></td>
+                </tr>
+                <tr>
+                  <td class="WeaknessTypesParent" id="PokemonOne2XMultipliers"></td>
+                  <td>2X</td>
+                  <td class="WeaknessTypesParent" id="PokemonTwo2XMultipliers"></td>
+                </tr>
+                <tr>
+                  <td class="WeaknessTypesParent" id="PokemonOne1XMultipliers"></td>
+                  <td>1X</td>
+                  <td class="WeaknessTypesParent" id="PokemonTwo1XMultipliers"></td>
+                </tr>
+                <tr>
+                  <td class="WeaknessTypesParent" id="PokemonOneHalfXMultipliers"></td>
+                  <td>1/2X</td>
+                  <td class="WeaknessTypesParent" id="PokemonTwoHalfXMultipliers"></td>
+                </tr>
+                <tr>
+                  <td class="WeaknessTypesParent" id="PokemonOneQuarterXMultipliers"></td>
+                  <td>1/4X</td>
+                  <td class="WeaknessTypesParent" id="PokemonTwoQuarterXMultipliers"></td>
+                </tr>
+                <tr>
+                  <td class="WeaknessTypesParent" id="PokemonOneZeroXMultipliers"></td>
+                  <td>0X</td>
+                  <td class="WeaknessTypesParent" id="PokemonTwoZeroXMultipliers"></td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
 
         <article class="card">
             <h2>Why I Made This </h2>

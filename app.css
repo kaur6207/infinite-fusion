@@ -240,6 +240,7 @@ details summary[role=button]:not(.outline)::after {
   --DexIdColor: green;
   --pico-background-color: #fff;
   --pico-header-background-color: rgba(255, 255, 255, 0.95);
+  --pico-table-header-background-color: rgba(243, 243, 243, 0.671);
   --pico-color: #373c44;
   --pico-border-color: #ccc;
   --pico-text-selection-color: rgba(116, 139, 248, 0.25);
@@ -363,6 +364,7 @@ details summary[role=button]:not(.outline)::after {
   :root:not([data-theme]) {
     --pico-background-color: #13171f;
     --pico-header-background-color: rgba(20, 20, 20, 0.95);
+    --pico-table-header-background-color: rgba(104, 104, 104, 0.95);
     --pico-color: #c2c7d0;
     --pico-border-color: #747272;
     --pico-text-selection-color: rgba(137, 153, 249, 0.1875);
@@ -490,9 +492,11 @@ details summary[role=button]:not(.outline)::after {
 }
 
 [data-theme=dark] {
+ --svg-filter: invert(92%) sepia(1%) saturate(0%) hue-rotate(182deg) brightness(103%) contrast(100%);
   --DexIdColor: rgb(0, 255, 98);
   --pico-background-color: #13171f;
   --pico-header-background-color: rgba(20, 20, 20, 0.815);
+  --pico-table-header-background-color: rgba(66, 65, 65, 0.95);
   --pico-color: #c2c7d0;
   --pico-border-color: #727272;
   --pico-text-selection-color: rgba(137, 153, 249, 0.1875);
@@ -3594,7 +3598,7 @@ p {
   height: 40px;
 }
 
-.DexIdColor{
+.DexIdColor {
   font-weight: 600;
   color: var(--DexIdColor);
 }
@@ -3724,6 +3728,7 @@ p {
   background-color: #a8a878;
   color: #333;
 }
+
 /* Add more type styles as needed */
 @media (max-width: 767px) {
   .types {
@@ -3747,7 +3752,8 @@ p {
 
 .PokemonAbility {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust the minmax value as needed */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  /* Adjust the minmax value as needed */
   gap: 10px;
   /* max-height: 200px; 
   overflow-y: auto;  */
@@ -3766,10 +3772,68 @@ p {
 
 @media screen and (max-width: 768px) {
   .PokemonAbility {
-    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* Show one ability per row on mobile */
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    /* Show one ability per row on mobile */
   }
 }
 
 .AbilityHeading {
   margin-bottom: 20px;
 }
+
+
+.StatsTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+.StatsTable th,
+.StatsTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.StatsTable th {
+  background-color: var(--pico-table-header-background-color);
+  font-weight: bold;
+}
+
+.StatsTable .Green {
+  color: #00aa00;
+  /* Green */
+}
+
+.StatsTable .Red {
+  color: #ff0000;
+  /* Red */
+}
+
+.StatsTable .Yellow {
+  color: #ffcc00;
+  /* Yellow */
+}
+
+.HiddenSVG {
+  /* Set the color for the SVG */
+  filter: var(--svg-filter);
+}
+
+
+.WeaknessTypesParent {
+  display: flex;
+flex-wrap: wrap;
+gap: 10px;
+
+}
+.WeaknessesTypes {
+  border: 1px solid var(--pico-border-color);
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+  /* background: transparent !important; */
+  width: 40px;
+}
+
+
