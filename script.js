@@ -14478,9 +14478,10 @@ const populateDom = (result) => {
   const pokemonOneAbilityElement = document.getElementById("PokemonOneAbility");
   const pokemonTwoAbilityElement = document.getElementById("PokemonTwoAbility");
 
+  
   // Populate Pokémon names
-  pokemonOneNameElement.innerHTML = `<strong>${result.fusedPokemonImages.firstFusedPokemonName}</strong>: <span class="DexIdColor">${result.fusedPokemonImages.firstCustomSpriteDexId}</span>`;
-  pokemonTwoNameElement.innerHTML = `<strong>${result.fusedPokemonImages.secondFusedPokemonName}</strong>: <span class="DexIdColor">${result.fusedPokemonImages.secondCustomSpriteDexId}</span>`;
+  pokemonOneNameElement.innerHTML = `<strong>${result.fusedPokemonImages.firstFusedPokemonName}</strong>: <span class="DexIdColor">(${result.fusedPokemonImages.firstCustomSpriteDexId})</span>`;
+  pokemonTwoNameElement.innerHTML = `<strong>${result.fusedPokemonImages.secondFusedPokemonName}</strong>: <span class="DexIdColor">(${result.fusedPokemonImages.secondCustomSpriteDexId})</span>`;
 
   // Populate Pokémon images
   pokemonOneCustomSpriteElement.src = result.fusedPokemonImages.firstCustomSpriteImageUrl;
@@ -14493,13 +14494,13 @@ const populateDom = (result) => {
   pokemonTwoTypesElement.innerHTML = result.pokemonTwoTypes.map(type => `<div class="types" id="${type}">${type}</div>`).join('');
 
   // Populate Pokémon abilities
-  populateAbilities(pokemonOneAbilityElement, result.pokemonOneAbility, result.fusedPokemonImages.firstCustomSpriteDexId, "PokemonOneAbilityHeading");
-  populateAbilities(pokemonTwoAbilityElement, result.pokemonTwoAbility, result.fusedPokemonImages.secondCustomSpriteDexId, "PokemonTwoAbilityHeading");
+  populateAbilities(pokemonOneAbilityElement, result.pokemonOneAbility, result.fusedPokemonImages.firstFusedPokemonName, result.fusedPokemonImages.firstCustomSpriteDexId, "PokemonOneAbilityHeading");
+  populateAbilities(pokemonTwoAbilityElement, result.pokemonTwoAbility, result.fusedPokemonImages.secondFusedPokemonName, result.fusedPokemonImages.secondCustomSpriteDexId, "PokemonTwoAbilityHeading");
 };
 
-const populateAbilities = (element, abilities, dexId, headingId) => {
+const populateAbilities = (element, abilities, fusedPokemonName, dexId, headingId) => {
   const abilityHeadingElement = document.getElementById(headingId);
-  abilityHeadingElement.innerHTML = `${dexId} Ability`;
+  abilityHeadingElement.innerHTML = `${fusedPokemonName} (<span class="DexIdColor">${dexId}</span>): Ability`;
 
   abilities.normalAbilities.forEach(ability => {
     const abilityDiv = document.createElement('div');
@@ -14513,11 +14514,10 @@ const populateAbilities = (element, abilities, dexId, headingId) => {
     const hiddenAbilityDiv = document.createElement('div');
     hiddenAbilityDiv.className = 'ability';
     hiddenAbilityDiv.id = `${ability}`;
-    hiddenAbilityDiv.innerHTML = `${ability}&nbsp;<span class="HiddenIcon"><img width="18" height="18" src="/static/images/close-eye.svg" alt="Close Eye SVG Icon"></span>`;
+    hiddenAbilityDiv.innerHTML = `${ability}<span class="HiddenIcon">&nbsp;<img width="18" height="18" src="/static/images/close-eye.svg" alt="Close Eye SVG Icon"></span>`;
     element.appendChild(hiddenAbilityDiv);
   });
 };
-
 
 
 

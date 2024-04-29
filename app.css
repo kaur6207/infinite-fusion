@@ -237,6 +237,7 @@ details summary[role=button]:not(.outline)::after {
  */
 [data-theme=light],
 :root:not([data-theme=dark]) {
+  --DexIdColor: green;
   --pico-background-color: #fff;
   --pico-header-background-color: rgba(255, 255, 255, 0.95);
   --pico-color: #373c44;
@@ -489,6 +490,7 @@ details summary[role=button]:not(.outline)::after {
 }
 
 [data-theme=dark] {
+  --DexIdColor: rgb(0, 255, 98);
   --pico-background-color: #13171f;
   --pico-header-background-color: rgba(20, 20, 20, 0.815);
   --pico-color: #c2c7d0;
@@ -547,7 +549,7 @@ details summary[role=button]:not(.outline)::after {
   --pico-code-color: #8891a4;
   --pico-code-kbd-background-color: var(--pico-color);
   --pico-code-kbd-color: var(--pico-background-color);
-  --pico-form-element-background-color: #1c212c;
+  --pico-form-element-background-color: #242d41;
   --pico-form-element-selected-background-color: #2a3140;
   --pico-form-element-border-color: #2a3140;
   --pico-form-element-color: #e0e3e7;
@@ -3150,14 +3152,16 @@ textarea,
   /* Transparent */
   border: 2px solid #d3707a;
   /* Red */
-  color: #dc3545;
+  /* color: #dc3545; */
+
+  background-color: #dc3545;
+  /* Red on Hover */
+  color: #fff;
   /* Red */
 }
 
 #Reset:hover {
-  background-color: #dc3545;
-  /* Red on Hover */
-  color: #fff;
+
   /* White on Hover */
 }
 
@@ -3591,13 +3595,14 @@ p {
 }
 
 .DexIdColor{
-  color: blue;
+  font-weight: 600;
+  color: var(--DexIdColor);
 }
 
 /* General styles */
 
 /* Container styles */
-.PokemonTypes, .PokemonAbility {
+.PokemonTypes {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -3609,12 +3614,7 @@ p {
   margin-top: 0;
 }
 
-.PokemonAbility {
-  margin-top: 30px;
-}
-.PokemonAbility header {
-  word-break: break-all;
-}
+
 
 /* Type styles */
 .types {
@@ -3729,4 +3729,47 @@ p {
   .types {
     min-width: 100%;
   }
+}
+
+.PokemonAbilityMain {
+  border: 1px solid var(--pico-border-color);
+  border-radius: 4px;
+  padding: 10px;
+  gap: 10px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.PokemonAbilityMain #PokemonOneAbilityHeading,
+.PokemonAbilityMain #PokemonTwoAbilityHeading {
+  font-weight: bold;
+}
+
+.PokemonAbility {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust the minmax value as needed */
+  gap: 10px;
+  /* max-height: 200px; 
+  overflow-y: auto;  */
+}
+
+.ability {
+  border: 1px solid var(--pico-border-color);
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+}
+
+.HiddenIcon {
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .PokemonAbility {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* Show one ability per row on mobile */
+  }
+}
+
+.AbilityHeading {
+  margin-bottom: 20px;
 }
