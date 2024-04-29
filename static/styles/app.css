@@ -356,6 +356,7 @@ details summary[role=button]:not(.outline)::after {
 
 @media only screen and (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
+    --svg-filter: invert(92%) sepia(1%) saturate(0%) hue-rotate(182deg) brightness(103%) contrast(100%);
     --pico-background-color: #13171f;
     --pico-header-background-color: rgba(20, 20, 20, 0.95);
     --pico-table-header-background-color: rgba(104, 104, 104, 0.95);
