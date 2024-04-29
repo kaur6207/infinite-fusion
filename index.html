@@ -77,14 +77,18 @@
                         <header>Custom Sprite</header>
                         <img src="" alt="" class="PokemonImagesChild" width="288" height="288"
                             onerror="this.onerror=null;this.src='/static/images/not_found.jpg';">
-                        <footer class="PokemonOneTypes"></footer>
+                        <!-- <footer class="PokemonOneTypes"></footer> -->
                     </article>
                     <article class="ImageCards border">
                         <header>Autogen Sprite</header>
                         <img src="" alt="" class="PokemonImagesChild" width="288" height="288"
                             onerror="this.onerror=null;this.src='/static/images/not_found.jpg';">
-                        <footer class="PokemonOneTypes"></footer>
                     </article>
+                </div>
+                <footer id="PokemonOneTypes" class="PokemonTypes">Pokemon Types</footer>
+                <div class="PokemonAbility">
+                    <div id="PokemonOneAbilityHeading">DexID Ability</div>
+                    <div id="PokemonOneAbility"></div>
                 </div>
             </div>
             <div class="PokemonTwoImages" id="PokemonTwoImages">
@@ -94,16 +98,41 @@
                         <header>Custom Sprite</header>
                         <img src="" alt="" class="PokemonImagesChild" width="288" height="288"
                             onerror="this.onerror=null;this.src='/static/images/not_found.jpg';">
-                        <footer class="PokemonOneTypes"></footer>
+                        <!-- <footer class="PokemonOneTypes"></footer> -->
                     </article>
                     <article class="ImageCards border">
                         <header>Autogen Sprite</header>
                         <img src="" alt="" class="PokemonImagesChild" width="288" height="288"
                             onerror="this.onerror=null;this.src='/static/images/not_found.jpg';">
-                        <footer class="PokemonOneTypes"></footer>
                     </article>
                 </div>
+                <footer id="PokemonTwoTypes" class="PokemonTypes">Pokemon Types</footer>
+                <div class="PokemonAbility">
+                    <div id="PokemonTwoAbilityHeading">DexID Ability</div>
+                    <div id="PokemonTwoAbility">
+                        <div class="ability" id="AbilityNameAsId">Ability Name <span class="HiddenIcon"></span></div>
+                    </div>
+                </div>
             </div>
+        </article>
+
+        <article class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th id="PokemonOneNameTable"></th>
+                        <th id="PokemonTwoNameTable"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
         </article>
 
 
@@ -128,6 +157,8 @@
                 chosedn pokemon's types</p>
         </article>
     </main>
+
+
     <script src="script.js"></script>
 </body>
 

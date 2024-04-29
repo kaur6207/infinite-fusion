@@ -3593,3 +3593,140 @@ p {
 .DexIdColor{
   color: blue;
 }
+
+/* General styles */
+
+/* Container styles */
+.PokemonTypes, .PokemonAbility {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 1px solid var(--pico-border-color);
+  border-radius: 4px;
+  padding: 10px;
+  gap: 10px;
+  text-align: center;
+  margin-top: 0;
+}
+
+.PokemonAbility {
+  margin-top: 30px;
+}
+.PokemonAbility header {
+  word-break: break-all;
+}
+
+/* Type styles */
+.types {
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  min-width: 40%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.types:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Type colors */
+#FAIRY {
+  background-color: #ef9adf;
+  color: #fff;
+}
+
+#WATER {
+  background-color: #6890f0;
+  color: #fff;
+}
+
+#FIRE {
+  background-color: #f08030;
+  color: #fff;
+}
+
+#GRASS {
+  background-color: #78c850;
+  color: #fff;
+}
+
+#ELECTRIC {
+  background-color: #f8d030;
+  color: #333;
+}
+
+#ICE {
+  background-color: #98d8d8;
+  color: #333;
+}
+
+#FIGHTING {
+  background-color: #c03028;
+  color: #fff;
+}
+
+#POISON {
+  background-color: #a040a0;
+  color: #fff;
+}
+
+#GROUND {
+  background-color: #e0c068;
+  color: #333;
+}
+
+#FLYING {
+  background-color: #a890f0;
+  color: #fff;
+}
+
+#PSYCHIC {
+  background-color: #f85888;
+  color: #fff;
+}
+
+#BUG {
+  background-color: #a8b820;
+  color: #fff;
+}
+
+#ROCK {
+  background-color: #b8a038;
+  color: #fff;
+}
+
+#GHOST {
+  background-color: #705898;
+  color: #fff;
+}
+
+#DRAGON {
+  background-color: #7038f8;
+  color: #fff;
+}
+
+#DARK {
+  background-color: #705848;
+  color: #fff;
+}
+
+#STEEL {
+  background-color: #b8b8d0;
+  color: #333;
+}
+
+#NORMAL {
+  background-color: #a8a878;
+  color: #333;
+}
+/* Add more type styles as needed */
+@media (max-width: 767px) {
+  .types {
+    min-width: 100%;
+  }
+}

@@ -14056,151 +14056,124 @@ const calculateStats = (pokemonNameOne, pokemonNameTwo) => {
   return output;
 };
 
-
-const calculateTypes = (dexIdOne, dexIdTwo) => {
-  // Declair variables of pokemon head and body types
+const calculateTypes = (pokemonNameOne, pokemonNameTwo) => {
+  // Declare variables of pokemon head and body types
   const pokemonHeadTypes = data[pokemonNameOne]["types"];
   const pokemonBodyTypes = data[pokemonNameTwo]["types"];
 
   // Check if both Pokémon exist in the data object
   if (!pokemonHeadTypes || !pokemonBodyTypes) {
-    return null; // Return null if either Pokémon ID is invalid
+      return null; // Return null if either Pokémon ID is invalid
   }
 
   // Check if the head Pokémon has a swapped type
-  const swappedHeadTypes = checkSwappedTypes(dexIdOne, pokemonHeadTypes);
+  const swappedHeadTypes = checkSwappedTypes(pokemonNameOne, pokemonHeadTypes);
 
   // Check if the body Pokémon has a swapped type
-  const swappedBodyTypes = checkSwappedTypes(dexIdTwo, pokemonBodyTypes);
+  const swappedBodyTypes = checkSwappedTypes(pokemonNameTwo, pokemonBodyTypes);
 
   // Check if the head Pokémon has a dominant type
-  const dominantHeadType = checkDominantType(dexIdOne, swappedHeadTypes);
+  const dominantHeadType = checkDominantType(pokemonNameOne, swappedHeadTypes);
 
   // Check if the body Pokémon has a dominant type
-  const dominantBodyType = checkDominantType(dexIdTwo, swappedBodyTypes);
+  const dominantBodyType = checkDominantType(pokemonNameTwo, swappedBodyTypes);
 
   // Determine the fused types
   let fusedTypes = [];
 
   if (dominantHeadType) {
-    fusedTypes.push(dominantHeadType);
+      fusedTypes.push(dominantHeadType);
   } else {
-    fusedTypes.push(swappedHeadTypes[0]);
+      fusedTypes.push(swappedHeadTypes[0]);
   }
 
   if (dominantBodyType) {
-    fusedTypes.push(dominantBodyType);
+      fusedTypes.push(dominantBodyType);
   } else if (swappedBodyTypes.length > 1 && !fusedTypes.includes(swappedBodyTypes[1])) {
-    fusedTypes.push(swappedBodyTypes[1]);
+      fusedTypes.push(swappedBodyTypes[1]);
   } else if (swappedBodyTypes.length === 1 && !fusedTypes.includes(swappedBodyTypes[0])) {
-    fusedTypes.push(swappedBodyTypes[0]);
+      fusedTypes.push(swappedBodyTypes[0]);
   }
 
-  // check if fusedTypes borth types are same so return only one type i mean arrya length is 1
+  // check if fusedTypes both types are the same so return only one type (array length is 1)
   if (fusedTypes[0] === fusedTypes[1]) {
-    fusedTypes = [fusedTypes[0]];
+      fusedTypes = [fusedTypes[0]];
   }
 
   // Check if the fused types are valid
-
   return fusedTypes;
 };
 
-const checkSwappedTypes = (dexId, types) => {
+const checkSwappedTypes = (pokemonName, types) => {
+  const dexId = data[pokemonName]["id"];
   const swappedTypesMap = {
-    81: ["Electric", "Steel"], // Magnemite
-    82: ["Electric", "Steel"], // Magneton
-    492: ["Ghost", "Dark"], // Spiritomb
+      81: ["Electric", "Steel"], // Magnemite
+      82: ["Electric", "Steel"], // Magneton
+      295: ["Ghost", "Dark"], // Spiritomb
   };
 
   if (swappedTypesMap[dexId]) {
-    return swappedTypesMap[dexId];
+      return swappedTypesMap[dexId];
   }
 
   return types;
 };
 
-const checkDominantType = (dexId, types) => {
+const checkDominantType = (pokemonName, types) => {
+  const dexId = data[pokemonName]["id"];
   const dominantTypesMap = {
-    1: "GRASS", // Bulbasaur
-    2: "GRASS", // Ivysaur
-    3: "GRASS", // Venusaur
-    6: "FIRE", // Charizard
-    74: "ROCK", // Geodude
-    75: "ROCK", // Graveler
-    76: "ROCK", // Golem
-    92: "GHOST", // Gastly
-    93: "GHOST", // Haunter
-    94: "GHOST", // Gengar
-    95: "ROCK", // Onix
-    123: "BUG", // Scyther
-    130: "WATER", // Gyarados
-    144: "ICE", // Articuno
-    145: "ELECTRIC", // Zapdos
-    146: "FIRE", // Moltres
-    149: "DRAGON", // Dragonite
-    208: "STEEL", // Steelix
-    16: "NORMAL", // Pidgey
-    17: "NORMAL", // Pidgeotto
-    18: "NORMAL", // Pidgeot
-    21: "NORMAL", // Spearow
-    22: "NORMAL", // Fearow
-    41: "NORMAL", // Zubat
-    42: "NORMAL", // Golbat
-    83: "NORMAL", // Farfetch'd
-    84: "NORMAL", // Doduo
-    85: "NORMAL", // Dodrio
-    109: "NORMAL", // Koffing
-    110: "NORMAL", // Weezing
-    142: "NORMAL", // Aerodactyl
-    163: "NORMAL", // Hoothoot
-    164: "NORMAL", // Noctowl
-    165: "NORMAL", // Ledyba
-    166: "NORMAL", // Ledian
-    177: "NORMAL", // Natu
-    178: "NORMAL", // Xatu
-    190: "NORMAL", // Aipom
-    198: "NORMAL", // Murkrow
-    276: "NORMAL", // Taillow
-    277: "NORMAL", // Swellow
-    278: "NORMAL", // Wingull
-    279: "NORMAL", // Pelipper
-    283: "NORMAL", // Surskit
-    284: "NORMAL", // Masquerain
-    285: "NORMAL", // Shroomish
-    286: "NORMAL", // Breloom
-    287: "NORMAL", // Slakoth
-    288: "NORMAL", // Vigoroth
-    289: "NORMAL", // Slaking
-    349: "NORMAL", // Feebas
-    397: "NORMAL", // Staravia
-    399: "NORMAL", // Bidoof
-    400: "NORMAL", // Bibarel
-    401: "NORMAL", // Kricketot
-    402: "NORMAL", // Kricketune
-    436: "NORMAL", // Bronzor
-    437: "NORMAL", // Bronzong
-    441: "NORMAL", // Chatot
-    443: "NORMAL", // Gible
-    444: "NORMAL", // Gabite
-    445: "NORMAL", // Garchomp
-    451: "NORMAL", // Skorupi
-    452: "NORMAL", // Drapion
-    459: "NORMAL", // Snover
-    460: "NORMAL", // Abomasnow
+      1: "GRASS", // Bulbasaur
+      2: "GRASS", // Ivysaur
+      3: "GRASS", // Venusaur
+      6: "FIRE", // Charizard
+      74: "ROCK", // Geodude
+      75: "ROCK", // Graveler
+      76: "ROCK", // Golem
+      92: "GHOST", // Gastly
+      93: "GHOST", // Haunter
+      94: "GHOST", // Gengar
+      95: "ROCK", // Onix
+      123: "BUG", // Scyther
+      130: "WATER", // Gyarados
+      144: "ICE", // Articuno
+      145: "ELECTRIC", // Zapdos
+      146: "FIRE", // Moltres
+      149: "DRAGON", // Dragonite
+      208: "STEEL", // Steelix
+      16: "NORMAL", // Pidgey
+      17: "NORMAL", // Pidgeotto
+      18: "NORMAL", // Pidgeot
+      // Add more dominant types as needed
   };
 
   if (dominantTypesMap[dexId]) {
-    return dominantTypesMap[dexId];
+      return dominantTypesMap[dexId];
   }
 
   if (types.includes("Normal") && types.includes("Flying")) {
-    return "Flying";
+      return "Flying";
   }
 
   return null;
 };
 
+const determineFusedTypes = (headTypes, bodyTypes) => {
+  let fusedTypes = [];
+
+  headTypes.forEach(type => {
+      if (!fusedTypes.includes(type)) {
+          fusedTypes.push(type);
+      }
+  });
+
+  bodyTypes.forEach(type => {
+      if (!fusedTypes.includes(type)) {
+          fusedTypes.push(type);
+      }
+  });
+
+  return fusedTypes;
+};
 
 const calculateAbility = (pokemonNameOne, pokemonNameTwo) => {
   const pokemonHeadAbilities = data[pokemonNameOne]["abilities"];
@@ -14380,8 +14353,8 @@ const runAllFunctions = (pokemonNameOne, pokemonNameTwo) => {
   const fusedPokemonImages = generateFusionImages(dexIdOne, dexIdTwo);
   const pokemonOneStats = calculateStats(pokemonNameOne, pokemonNameTwo);
   const pokemonTwoStats = calculateStats(pokemonNameTwo, pokemonNameOne);
-  const pokemonOneTypes = calculateTypes(dexIdOne, dexIdTwo);
-  const pokemonTwoTypes = calculateTypes(dexIdTwo, dexIdOne);
+  const pokemonOneTypes = calculateTypes(pokemonNameOne, pokemonNameTwo);
+  const pokemonTwoTypes = calculateTypes(pokemonNameTwo, pokemonNameOne);
   const pokemonOneAbility = calculateAbility(pokemonNameOne, pokemonNameTwo);
   const pokemonTwoAbility = calculateAbility(pokemonNameTwo, pokemonNameOne);
   const pokemonOneTypeWeaknesses = calculateTypeWeakness(pokemonOneTypes);
@@ -14481,8 +14454,6 @@ document.getElementById("Reset").addEventListener("click", resetPokemon);
 
 
 const populateDom = (result) => {
-
-  
   // JavaScript code to scroll to the element with the id "PokemonInput" when the page loads
   document.addEventListener('DOMContentLoaded', function () {
     const pokemonInput = document.getElementById('PokemonInput');
@@ -14495,7 +14466,6 @@ const populateDom = (result) => {
   document.getElementById("FirstPokemon").value = pokemonNameOne;
   document.getElementById("SecondPokemon").value = pokemonNameTwo;
 
-
   // Get references to DOM elements
   const pokemonOneNameElement = document.getElementById("PokemonOneName");
   const pokemonTwoNameElement = document.getElementById("PokemonTwoName");
@@ -14503,6 +14473,10 @@ const populateDom = (result) => {
   const pokemonOneAutogenSpriteElement = document.querySelector("#PokemonOneImages .ImageCards:nth-child(2) img");
   const pokemonTwoCustomSpriteElement = document.querySelector("#PokemonTwoImages .ImageCards:nth-child(1) img");
   const pokemonTwoAutogenSpriteElement = document.querySelector("#PokemonTwoImages .ImageCards:nth-child(2) img");
+  const pokemonOneTypesElement = document.getElementById("PokemonOneTypes");
+  const pokemonTwoTypesElement = document.getElementById("PokemonTwoTypes");
+  const pokemonOneAbilityElement = document.getElementById("PokemonOneAbility");
+  const pokemonTwoAbilityElement = document.getElementById("PokemonTwoAbility");
 
   // Populate Pokémon names
   pokemonOneNameElement.innerHTML = `<strong>${result.fusedPokemonImages.firstFusedPokemonName}</strong>: <span class="DexIdColor">${result.fusedPokemonImages.firstCustomSpriteDexId}</span>`;
@@ -14514,9 +14488,37 @@ const populateDom = (result) => {
   pokemonTwoCustomSpriteElement.src = result.fusedPokemonImages.secondCustomSpriteImageUrl;
   pokemonTwoAutogenSpriteElement.src = result.fusedPokemonImages.secondAutogenSpriteImageUrl;
 
+  // Populate Pokémon types
+  pokemonOneTypesElement.innerHTML = result.pokemonOneTypes.map(type => `<div class="types" id="${type}">${type}</div>`).join('');
+  pokemonTwoTypesElement.innerHTML = result.pokemonTwoTypes.map(type => `<div class="types" id="${type}">${type}</div>`).join('');
+
+  // Populate Pokémon abilities
+  populateAbilities(pokemonOneAbilityElement, result.pokemonOneAbility, result.fusedPokemonImages.firstCustomSpriteDexId, "PokemonOneAbilityHeading");
+  populateAbilities(pokemonTwoAbilityElement, result.pokemonTwoAbility, result.fusedPokemonImages.secondCustomSpriteDexId, "PokemonTwoAbilityHeading");
+};
+
+const populateAbilities = (element, abilities, dexId, headingId) => {
+  const abilityHeadingElement = document.getElementById(headingId);
+  abilityHeadingElement.innerHTML = `${dexId} Ability`;
+
+  abilities.normalAbilities.forEach(ability => {
+    const abilityDiv = document.createElement('div');
+    abilityDiv.className = 'ability';
+    abilityDiv.id = `${ability}`;
+    abilityDiv.innerText = `${ability}`;
+    element.appendChild(abilityDiv);
+  });
+
+  abilities.hiddenAbilities.forEach(ability => {
+    const hiddenAbilityDiv = document.createElement('div');
+    hiddenAbilityDiv.className = 'ability';
+    hiddenAbilityDiv.id = `${ability}`;
+    hiddenAbilityDiv.innerHTML = `${ability}&nbsp;<span class="HiddenIcon"><img width="18" height="18" src="/static/images/close-eye.svg" alt="Close Eye SVG Icon"></span>`;
+    element.appendChild(hiddenAbilityDiv);
+  });
+};
 
 
-}
 
 
 
