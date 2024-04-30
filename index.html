@@ -97,21 +97,25 @@
             <div class="grid">
                 <div>
                     <label for="FirstPokemon"><strong>First Pokemon</strong></label>
-                    <input id="FirstPokemon" type="text" list="FirstPokemonDatalist" name="search"
-                        placeholder="Enter Pokemon Name or Dex Id" aria-label="Search" />
-                    <div id="FirstPokemonData">
-                        <datalist id="FirstPokemonDatalist">
-
-                        </datalist>
+                    <div role="group">
+                        <input id="FirstPokemon" type="text" list="FirstPokemonDatalist" name="search"
+                            placeholder="Enter Pokemon Name or Dex Id" aria-label="Search" />
+                        <button id="RandomFirstPokemon" class="outlineButton iconButton"><img width="40" height="40"
+                                src="/static/images/random.svg" alt="" class="RandomIcon"></button>
                     </div>
+                    <datalist id="FirstPokemonDatalist"></datalist>
+
                 </div>
 
                 <div>
                     <label for="Second"><strong>Second Pokemon</strong></label>
-                    <input id="SecondPokemon" type="text" list="SecondPokemonDatalist" name="search"
-                        placeholder="Enter Pokemon Name or Dex Id" aria-label="Search" />
-                    <datalist id="SecondPokemonDatalist">
-                    </datalist>
+                    <div role="group">
+                        <input id="SecondPokemon" type="text" list="SecondPokemonDatalist" name="search"
+                            placeholder="Enter Pokemon Name or Dex Id" aria-label="Search" />
+                        <button id="RandomSecondPokemon" class="outlineButton iconButton"><img width="40" height="40"
+                                src="/static/images/random.svg" alt="" class="RandomIcon">
+                    </div>
+                    <datalist id="SecondPokemonDatalist"></datalist>
                 </div>
             </div>
             <div class="grid">
@@ -336,13 +340,12 @@
         <article class="card container">
             <h2>Change Logs</h2>
             <ol class="ChangeLogsList">
+                <li class="log"><ins>April 30, 2024:</ins> Added functionality to randomly assign Pokemon to individual input fields.</li>
+                <li class="log"><ins>April 30, 2024:</ins> Implemented error handling to display an alert if the user tries to fuse Pokemon without selecting any.</li>
                 <li class="log"><ins>April 20, 2024:</ins> Added a section for copying Fusion Result Page Link.</li>
-                <li class="log"><ins>April 20, 2024:</ins> Implemented functionality to update the title according to
-                    Fusion calculation.</li>
-                <li class="log"><ins>April 29, 2024:</ins> Deployed all custom and autogen sprites on a powerful CDN
-                    server.</li>
-                <li class="log"><ins>April 29, 2024:</ins> Deployed the Pokemon Infinite Fusion Calculator on the
-                    server.</li>
+                <li class="log"><ins>April 20, 2024:</ins> Implemented functionality to update the title according to Fusion calculation.</li>
+                <li class="log"><ins>April 29, 2024:</ins> Deployed all custom and autogen sprites on a powerful CDN server.</li>
+                <li class="log"><ins>April 29, 2024:</ins> Deployed the Pokemon Infinite Fusion Calculator on the server.</li>
             </ol>
         </article>
     </main>

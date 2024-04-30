@@ -14352,7 +14352,6 @@ const populateDatalists = () => {
     const option = document.createElement("option");
     option.value = pokemon;
     option.textContent = `(${data[pokemon].id}) ${pokemon}`;
-
     firstPokemonDatalist.appendChild(option.cloneNode(true));
     secondPokemonDatalist.appendChild(option);
   }
@@ -14360,6 +14359,17 @@ const populateDatalists = () => {
 
 populateDatalists();
 
+const getRandomOption = (datalist) => {
+  const options = datalist.options;
+  const randomIndex = Math.floor(Math.random() * options.length);
+  return options[randomIndex].value;
+};
+
+const setRandomPokemon = (inputId, datalistId) => {
+  const input = document.getElementById(inputId);
+  const datalist = document.getElementById(datalistId);
+  input.value = getRandomOption(datalist);
+};
 
 const fusePokemon = () => {
   const firstPokemon = document.getElementById("FirstPokemon").value;
@@ -14368,27 +14378,17 @@ const fusePokemon = () => {
   if (firstPokemon && secondPokemon) {
     const url = `/?firstpoke=${firstPokemon}&secondpoke=${secondPokemon}`;
     window.location.href = url;
+  } else {
+    alert("Please choose both Pokemon before fusing.");
   }
 };
 
-
 const getRandomPokemon = () => {
-  const getRandomOption = (datalist) => {
-    const options = datalist.options;
-    const randomIndex = Math.floor(Math.random() * options.length);
-    return options[randomIndex].value;
-  };
-
-  const firstPokemonInput = document.getElementById("FirstPokemon");
-  const secondPokemonInput = document.getElementById("SecondPokemon");
-
-  firstPokemonInput.value = getRandomOption(document.getElementById("FirstPokemonDatalist"));
-  secondPokemonInput.value = getRandomOption(document.getElementById("SecondPokemonDatalist"));
-
+  setRandomPokemon("FirstPokemon", "FirstPokemonDatalist");
+  setRandomPokemon("SecondPokemon", "SecondPokemonDatalist");
   fusePokemon();
 };
 
-// in reset pokemon run reload home page url
 function resetPokemon() {
   window.location.href = "/";
 }
@@ -14396,6 +14396,14 @@ function resetPokemon() {
 document.getElementById("FusePokemon").addEventListener("click", fusePokemon);
 document.getElementById("RandomPokemon").addEventListener("click", getRandomPokemon);
 document.getElementById("Reset").addEventListener("click", resetPokemon);
+
+document.getElementById("RandomFirstPokemon").addEventListener("click", () => {
+  setRandomPokemon("FirstPokemon", "FirstPokemonDatalist");
+});
+
+document.getElementById("RandomSecondPokemon").addEventListener("click", () => {
+  setRandomPokemon("SecondPokemon", "SecondPokemonDatalist");
+});
 
 
 

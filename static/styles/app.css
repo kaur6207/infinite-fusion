@@ -3829,6 +3829,11 @@ p {
   filter: var(--svg-filter);
 }
 
+.RandomIcon {
+  /* Set the color for the SVG */
+  filter: var(--svg-filter);
+}
+
 
 .WeaknessTypesParent {
   display: grid;
@@ -3864,4 +3869,14 @@ p {
 
 .hidden {
   display: none;
+}
+.iconButton {
+  margin: 10;
+  padding: 0;
+  width: 60px !important;
+}
+
+.outlineButton {
+  background: transparent;
+  border-color: var(--pico-form-element-border-color) !important;
 }
