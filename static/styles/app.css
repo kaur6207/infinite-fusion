@@ -3876,7 +3876,8 @@ p {
   width: 60px !important;
 }
 
-.outlineButton {
-  background: transparent;
+.outlineButton, iconButton {
+  background: transparent !important;
+  background-color: transparent !important;
   border-color: var(--pico-form-element-border-color) !important;
 }
