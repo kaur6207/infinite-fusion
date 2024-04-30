@@ -14447,24 +14447,43 @@ const populateDom = (result) => {
     // Get the input and button elements
     const linkInput = document.getElementById('LinkInput');
     const copyLinkButton = document.getElementById('CopyLinkButton');
-
+  
     // Set the value of the input to the current page URL
     linkInput.value = window.location.href;
-
+  
     // Add an event listener to the button for copying the link
     copyLinkButton.addEventListener('click', function () {
+      // Try to use the Clipboard API
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(linkInput.value)
+          .then(() => {
+            alert('Link copied to clipboard!');
+          })
+          .catch((err) => {
+            console.error('Failed to copy link: ', err);
+            fallbackCopyToClipboard();
+          });
+      } else {
+        fallbackCopyToClipboard();
+      }
+    });
+  
+    // Fallback function to use document.execCommand('copy')
+    function fallbackCopyToClipboard() {
       // Select the text in the input field
       linkInput.select();
       linkInput.setSelectionRange(0, 99999); // For mobile devices
-
+  
       // Copy the selected text to the clipboard
-      document.execCommand('copy');
-
-      // Alert the user that the link has been copied
-      alert('Link copied to clipboard!');
-    });
+      const successful = document.execCommand('copy');
+  
+      if (successful) {
+        alert('Link copied to clipboard!');
+      } else {
+        console.error('Failed to copy link');
+      }
+    }
   });
-
 
   // Get references to DOM elements
   const pokemonOneNameElement = document.getElementById("PokemonOneName");
