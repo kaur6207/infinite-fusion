@@ -14394,17 +14394,22 @@ const populateDom = (result) => {
   // first display block (unhide) elements that we need to calculate so use dom pi to get this element #PokemonImages, #PokemonAbilityParent, #StatsParent, #weakness and add them style display block
 
   // Get references to the elements
+  const CopyLink = document.getElementById("CopyLink");
   const pokemonImages = document.getElementById("PokemonImages");
   const PokemonAbilityParent = document.getElementById("PokemonAbilityParent");
   const StatsParent = document.getElementById("StatsParent");
   const weakness = document.getElementById("weakness");
 
   // Remove the 'hidden' class from the elements
+  CopyLink.classList.remove("hidden");
   pokemonImages.classList.remove("hidden");
   PokemonAbilityParent.classList.remove("hidden");
   StatsParent.classList.remove("hidden");
   weakness.classList.remove("hidden");
 
+
+  // Set document title
+  document.title = `Fusion of ${pokemonNameOne} (${data[pokemonNameOne]["id"]}) & ${pokemonNameTwo} (${data[pokemonNameTwo]["id"]}) is ${result.fusedPokemonImages.firstFusedPokemonName} (${result.fusedPokemonImages.firstCustomSpriteDexId}) and ${result.fusedPokemonImages.secondFusedPokemonName} (${result.fusedPokemonImages.secondCustomSpriteDexId})`;
 
 
   // JavaScript code to scroll to the element with the id "PokemonInput" when the page loads
@@ -14418,6 +14423,29 @@ const populateDom = (result) => {
   // populate input
   document.getElementById("FirstPokemon").value = pokemonNameOne;
   document.getElementById("SecondPokemon").value = pokemonNameTwo;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get the input and button elements
+    const linkInput = document.getElementById('LinkInput');
+    const copyLinkButton = document.getElementById('CopyLinkButton');
+
+    // Set the value of the input to the current page URL
+    linkInput.value = window.location.href;
+
+    // Add an event listener to the button for copying the link
+    copyLinkButton.addEventListener('click', function () {
+      // Select the text in the input field
+      linkInput.select();
+      linkInput.setSelectionRange(0, 99999); // For mobile devices
+
+      // Copy the selected text to the clipboard
+      document.execCommand('copy');
+
+      // Alert the user that the link has been copied
+      alert('Link copied to clipboard!');
+    });
+  });
+
 
   // Get references to DOM elements
   const pokemonOneNameElement = document.getElementById("PokemonOneName");
