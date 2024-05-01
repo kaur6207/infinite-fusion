@@ -576,7 +576,7 @@ details summary[role=button]:not(.outline)::after {
   --pico-accordion-active-summary-color: var(--pico-primary-hover);
   --pico-accordion-close-summary-color: var(--pico-color);
   --pico-accordion-open-summary-color: var(--pico-muted-color);
-  --pico-card-background-color: #1b1b1b;
+  --pico-card-background-color: #011109;
   --pico-card-border-color: var(--pico-card-background-color);
   --pico-card-box-shadow: var(--pico-box-shadow);
   --pico-card-sectioning-background-color: #1a1f28;
@@ -3596,6 +3596,7 @@ p {
 
 .PokemonTextName {
   text-align: center;
+  margin-top: 10px;
 }
 
 .ImagesParentGrid {

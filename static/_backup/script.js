@@ -14554,7 +14554,11 @@ const populateDom = (result) => {
   }
   
   function fetchDataAndPopulateVariants(dexId, identifier, fusedPokemonName) {
-   
+   // first check if element with id VariantsParent have hidden class name so remove class name using if and else conditions
+   const variantsParent = document.getElementById("VariantsParent");
+   if (variantsParent.classList.contains("hidden")) {
+     variantsParent.classList.remove("hidden");
+   }
 
     fetch(`https://api.infinitefusion.online/custom-sprites/${dexId}`)
       .then(response => response.json())
@@ -14616,6 +14620,7 @@ const populateDom = (result) => {
 let pokemonNames = [];
 
 function populateVariants(data, identifier, fusedPokemonName) {
+
     console.log(data);
     console.log(identifier);
     console.log(fusedPokemonName);
