@@ -168,6 +168,29 @@
                 <footer id="PokemonTwoTypes" class="PokemonTypes">Pokemon Types</footer>
             </div>
         </article>
+        <!-- <article id="Variants" class="card">
+            <h2>Variants</h2>
+            <div id="VariantsMainParent">
+                <div id="FirstPokemonVariantsParent" class="VariantsParent">
+                </div>
+                <div id="SecondPokemonVariantsParent" class="VariantsParent">
+                </div>
+            </div>
+        </article> -->
+
+        <article>
+            <div id="Variants">
+                <h2 id="PokemonNames">Variants: <span id="PokemonNamesText"></span></h2>
+                <div class="VariantsCardsParent">
+                    <!-- Variant cards will be populated here -->
+                </div>
+            </div>
+        </article>
+
+
+
+
+
 
         <article role="group" class="hidden card" id="PokemonAbilityParent">
             <div class="PokemonAbilityMain">
@@ -300,7 +323,6 @@
                 </tbody>
             </table>
         </article>
-
         <article class="card">
             <h2>Why I Made This</h2>
             <hr>
@@ -335,27 +357,43 @@
                 calculation involves calling APIs for retrieving data. Your support will help ensure the continued
                 improvement and availability of this tool. You can donate through <a
                     href="https://www.buymeacoffee.com/iamvishsurya" target="_blank">Buy Me a Coffee</a>.</p>
-
+            <h2>New Feature: Variants</h2>
+            <hr>
+            <p style="font-style: italic;">The latest update to the Infinite Fusion Calculator introduces the "Variants" feature, allowing trainers to
+                explore alternative forms and variations of fused Pokemon. With this enhancement, trainers can now view all
+                available variants of a fused Pokemon, providing a comprehensive look at the different fusion options
+                available. This feature adds depth to the fusion experience, enabling trainers to discover unique and
+                exciting fusion combinations.</p>
         </article>
         <article class="card container">
             <h2>Change Logs</h2>
             <ol class="ChangeLogsList">
-                <li class="log"><ins>April 30, 2024:</ins> Improved copy link functionality for better cross-browser and cross-platform compatibility, including mobile devices.</li>
-                <li class="log"><ins>April 30, 2024:</ins> Added functionality to randomly assign Pokemon to individual input fields.</li>
-                <li class="log"><ins>April 30, 2024:</ins> Implemented error handling to display an alert if the user tries to fuse Pokemon without selecting any.</li>
+                <li class="log"><ins>May 1, 2024:</ins> Introduced Variants feature, allowing trainers to explore alternative
+                    forms and variations of fused Pokemon.</li>
+                <li class="log"><ins>April 30, 2024:</ins> Improved copy link functionality for better cross-browser and
+                    cross-platform compatibility, including mobile devices.</li>
+                <li class="log"><ins>April 30, 2024:</ins> Added functionality to randomly assign Pokemon to individual
+                    input fields.</li>
+                <li class="log"><ins>April 30, 2024:</ins> Implemented error handling to display an alert if the user
+                    tries to fuse Pokemon without selecting any.</li>
                 <li class="log"><ins>April 20, 2024:</ins> Added a section for copying Fusion Result Page Link.</li>
-                <li class="log"><ins>April 20, 2024:</ins> Implemented functionality to update the title according to Fusion calculation.</li>
-                <li class="log"><ins>April 29, 2024:</ins> Deployed all custom and autogen sprites on a powerful CDN server.</li>
-                <li class="log"><ins>April 29, 2024:</ins> Deployed the Pokemon Infinite Fusion Calculator on the server.</li>
+                <li class="log"><ins>April 20, 2024:</ins> Implemented functionality to update the title according to
+                    Fusion calculation.</li>
+                <li class="log"><ins>April 29, 2024:</ins> Deployed all custom and autogen sprites on a powerful CDN
+                    server.</li>
+                <li class="log"><ins>April 29, 2024:</ins> Deployed the Pokemon Infinite Fusion Calculator on the
+                    server.</li>
             </ol>
         </article>
+        
+        
     </main>
 
     <script src="/static/scripts/plugin.js"></script>
-    <script src="/static/_backup/script.js"></script>
-    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+    <script src="/static/scripts/main.mjs"></script>
+    <!-- <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
         data-id="iamvishsurya" data-description="Support me on Buy me a coffee!" data-message="" data-color="#40DCA5"
-        data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+        data-position="Right" data-x_margin="18" data-y_margin="18"></script> -->
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-488GW1DTKX"></script>

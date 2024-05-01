@@ -14412,6 +14412,29 @@ document.getElementById("RandomSecondPokemon").addEventListener("click", () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const populateDom = (result) => {
   // first display block (unhide) elements that we need to calculate so use dom pi to get this element #PokemonImages, #PokemonAbilityParent, #StatsParent, #weakness and add them style display block
 
@@ -14508,22 +14531,140 @@ const populateDom = (result) => {
   // Populate Pokémon images
 
   // Populate Pokémon images with error handling
-  pokemonOneCustomSpriteElement.src = result.fusedPokemonImages.firstCustomSpriteImageUrl;
-  pokemonOneCustomSpriteElement.onerror = function () {
-    this.src = '/static/images/not_found.jpg';
-  };
+
   pokemonOneAutogenSpriteElement.src = result.fusedPokemonImages.firstAutogenSpriteImageUrl;
   pokemonOneAutogenSpriteElement.onerror = function () {
     this.src = '/static/images/not_found.jpg';
   };
-  pokemonTwoCustomSpriteElement.src = result.fusedPokemonImages.secondCustomSpriteImageUrl;
-  pokemonTwoCustomSpriteElement.onerror = function () {
-    this.src = '/static/images/not_found.jpg';
-  };
+
   pokemonTwoAutogenSpriteElement.src = result.fusedPokemonImages.secondAutogenSpriteImageUrl;
   pokemonTwoAutogenSpriteElement.onerror = function () {
     this.src = '/static/images/not_found.jpg';
   };
+
+  function loadImage(url, onSuccess, onError) {
+    var img = new Image();
+    img.onload = function() {
+      onSuccess(img);
+    };
+    img.onerror = function() {
+      onError(img);
+    };
+    img.src = url;
+  }
+  
+  function fetchDataAndPopulateVariants(dexId, identifier, fusedPokemonName) {
+   
+
+    fetch(`https://api.infinitefusion.online/custom-sprites/${dexId}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log('Data fetched successfully:', data);
+        populateVariants(data, identifier, fusedPokemonName);
+        // Remove busy state and hidden class    // add DISPLAY HIDE in class VariantsLoader  document.querySelectorAll(".VariantsLoader")
+        document.querySelectorAll(".VariantsLoader").forEach(function(element) {
+          // add hidden class in VariantsLoader class element
+          element.classList.add("hidden");
+        });
+
+
+     
+
+       
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        document.querySelectorAll(".VariantsLoader").forEach(function(element) {
+          element.classList.add("hidden");
+        });
+      });
+  }
+  
+  loadImage(
+    result.fusedPokemonImages.firstCustomSpriteImageUrl,
+    function(img) {
+      console.log('PokemonOneCustomSpriteImageUrl loaded successfully');
+      // Populate actual image
+      pokemonOneCustomSpriteElement.src = img.src;
+      // Fetch data and populate variants
+      fetchDataAndPopulateVariants(result.fusedPokemonImages.firstCustomSpriteDexId, 'FirstPokemon', result.fusedPokemonImages.firstFusedPokemonName);
+    },
+    function(img) {
+      console.error('Error loading PokemonOneCustomSpriteImageUrl');
+      // Populate alternate image
+      pokemonOneCustomSpriteElement.src = '/static/images/not_found.jpg';
+    }
+  );
+  
+  loadImage(
+    result.fusedPokemonImages.secondCustomSpriteImageUrl,
+    function(img) {
+      console.log('PokemonTwoCustomSpriteImageUrl loaded successfully');
+      // Populate actual image
+      pokemonTwoCustomSpriteElement.src = img.src;
+      // Fetch data and populate variants
+      fetchDataAndPopulateVariants(result.fusedPokemonImages.secondCustomSpriteDexId, 'SecondPokemon', result.fusedPokemonImages.secondFusedPokemonName);
+    },
+    function(img) {
+      console.error('Error loading PokemonTwoCustomSpriteImageUrl');
+      // Populate alternate image
+      pokemonTwoCustomSpriteElement.src = '/static/images/not_found.jpg';
+    }
+  );
+  
+ // Initialize an array to store Pokemon names
+let pokemonNames = [];
+
+function populateVariants(data, identifier, fusedPokemonName) {
+    console.log(data);
+    console.log(identifier);
+    console.log(fusedPokemonName);
+
+    const totalVariants = data.total_variants || 0;
+    const pokemonName = `${fusedPokemonName} : ${totalVariants}`;
+
+    const variantsContainer = document.querySelector('.VariantsCardsParent'); // Targeting the VariantsCardsParent div
+    const pokemonNamesContainer = document.getElementById('PokemonNamesText');
+
+    if (!variantsContainer || !pokemonNamesContainer) {
+        console.error('Containers not found');
+        return;
+    }
+
+    // Add the current Pokemon name to the array
+    pokemonNames.push(pokemonName);
+
+    // Update the Pokemon names container with all names in the array
+    pokemonNamesContainer.textContent = pokemonNames.join(' & ');
+
+    data.variants.forEach(variant => {
+        const variantCard = document.createElement('article');
+        variantCard.classList.add('VariantsCards', 'border');
+
+        const header = document.createElement('header');
+        header.textContent = `${fusedPokemonName}: ${variant.image_name}`;
+        variantCard.appendChild(header);
+
+        const img = document.createElement('img');
+        img.src = variant.image_url;
+        img.alt = variant.image_name;
+        img.classList.add('VariantsImagesChild');
+        img.width = 288;
+        img.height = 288;
+        img.onerror = function() {
+            this.onerror = null;
+            this.src = '/static/images/not_found.jpg';
+        };
+        variantCard.appendChild(img);
+
+        const footer = document.createElement('footer');
+        footer.classList.add('Artist');
+        footer.textContent = `Artist: ${variant.artist.join(', ')}`;
+        variantCard.appendChild(footer);
+
+        variantsContainer.appendChild(variantCard);
+    });
+}
 
   // Populate Pokémon types
   pokemonOneTypesElement.innerHTML = result.pokemonOneTypes.map(type => `<div class="types" id="${type}">${type}</div>`).join('');
