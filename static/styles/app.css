@@ -576,7 +576,7 @@ details summary[role=button]:not(.outline)::after {
   --pico-accordion-active-summary-color: var(--pico-primary-hover);
   --pico-accordion-close-summary-color: var(--pico-color);
   --pico-accordion-open-summary-color: var(--pico-muted-color);
-  --pico-card-background-color: #181c25;
+  --pico-card-background-color: #1a1625;
   --pico-card-border-color: var(--pico-card-background-color);
   --pico-card-box-shadow: var(--pico-box-shadow);
   --pico-card-sectioning-background-color: #1a1f28;
