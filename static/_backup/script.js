@@ -13828,7 +13828,7 @@ const data = {
       "NORMAL",
       "FIGHTING"
     ],
-    "abilities": []
+    "abilities": [{"name": "Serene Grace", "hidden": True}]
   },
   "Cresselia": {
     "id": "468",
@@ -13846,7 +13846,7 @@ const data = {
     "types": [
       "PSYCHIC"
     ],
-    "abilities": []
+    "abilities": [{"name": "Levitate", "hidden": False}]
   },
   "Bruxish": {
     "id": "469",
@@ -13865,7 +13865,10 @@ const data = {
       "WATER",
       "PSYCHIC"
     ],
-    "abilities": []
+    "abilities": [
+      {"name": "Strong Jaw", "hidden": False},
+      {"name": "Wonder Skin", "hidden": True}
+    ]
   },
   "Ultra Necrozma": {
     "id": "470",
@@ -13884,7 +13887,7 @@ const data = {
       "PSYCHIC",
       "DRAGON"
     ],
-    "abilities": []
+    "abilities": [{"name": "N/A", "hidden": False}]
   }
 }
 
