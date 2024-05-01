@@ -13828,7 +13828,7 @@ const data = {
       "NORMAL",
       "FIGHTING"
     ],
-    "abilities": [{"name": "Serene Grace", "hidden": True}]
+    "abilities": [{ "name": "Serene Grace", "hidden": true }]
   },
   "Cresselia": {
     "id": "468",
@@ -13846,7 +13846,7 @@ const data = {
     "types": [
       "PSYCHIC"
     ],
-    "abilities": [{"name": "Levitate", "hidden": False}]
+    "abilities": [{ "name": "Levitate", "hidden": false }]
   },
   "Bruxish": {
     "id": "469",
@@ -13866,8 +13866,8 @@ const data = {
       "PSYCHIC"
     ],
     "abilities": [
-      {"name": "Strong Jaw", "hidden": False},
-      {"name": "Wonder Skin", "hidden": True}
+      { "name": "Strong Jaw", "hidden": false },
+      { "name": "Wonder Skin", "hidden": true }
     ]
   },
   "Ultra Necrozma": {
@@ -13887,9 +13887,9 @@ const data = {
       "PSYCHIC",
       "DRAGON"
     ],
-    "abilities": [{"name": "N/A", "hidden": False}]
+    "abilities": [{ "name": "N/A", "hidden": false }]
   }
-}
+}  
 
 
 
@@ -14450,10 +14450,10 @@ const populateDom = (result) => {
     // Get the input and button elements
     const linkInput = document.getElementById('LinkInput');
     const copyLinkButton = document.getElementById('CopyLinkButton');
-  
+
     // Set the value of the input to the current page URL
     linkInput.value = window.location.href;
-  
+
     // Add an event listener to the button for copying the link
     copyLinkButton.addEventListener('click', function () {
       // Try to use the Clipboard API
@@ -14470,16 +14470,16 @@ const populateDom = (result) => {
         fallbackCopyToClipboard();
       }
     });
-  
+
     // Fallback function to use document.execCommand('copy')
     function fallbackCopyToClipboard() {
       // Select the text in the input field
       linkInput.select();
       linkInput.setSelectionRange(0, 99999); // For mobile devices
-  
+
       // Copy the selected text to the clipboard
       const successful = document.execCommand('copy');
-  
+
       if (successful) {
         alert('Link copied to clipboard!');
       } else {
