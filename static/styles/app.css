@@ -3604,9 +3604,13 @@ p {
 }
 
 /* Media query for mobile devices */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 600px) {
   .ImagesParentGrid {
     gap: 0; /* Set gap to 0 for mobile devices */
+    margin: 0;
+    padding: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 
