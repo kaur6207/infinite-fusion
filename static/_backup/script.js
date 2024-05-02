@@ -14617,59 +14617,50 @@ const populateDom = (result) => {
   );
   
  // Initialize an array to store Pokemon names
-let pokemonNames = [];
+ function populateVariants(data, identifier, fusedPokemonName) {
+  console.log(data);
+  console.log(identifier);
+  console.log(fusedPokemonName);
 
-function populateVariants(data, identifier, fusedPokemonName) {
+  const totalVariants = data.total_variants || 0;
+  const pokemonName = `${fusedPokemonName} : ${totalVariants}`;
 
-    console.log(data);
-    console.log(identifier);
-    console.log(fusedPokemonName);
+  const variantsContainer = document.querySelector('.VariantsCardsParent'); // Targeting the VariantsCardsParent div
 
-    const totalVariants = data.total_variants || 0;
-    const pokemonName = `${fusedPokemonName} : ${totalVariants}`;
+  if (!variantsContainer) {
+      console.error('Containers not found');
+      return;
+  }
 
-    const variantsContainer = document.querySelector('.VariantsCardsParent'); // Targeting the VariantsCardsParent div
-    const pokemonNamesContainer = document.getElementById('PokemonNamesText');
+  data.variants.forEach(variant => {
+      const variantCard = document.createElement('article');
+      variantCard.classList.add('VariantsCards', 'border');
 
-    if (!variantsContainer || !pokemonNamesContainer) {
-        console.error('Containers not found');
-        return;
-    }
+      const header = document.createElement('header');
+      header.textContent = `${fusedPokemonName}: ${variant.image_name}`;
+      variantCard.appendChild(header);
 
-    // Add the current Pokemon name to the array
-    pokemonNames.push(pokemonName);
+      const img = document.createElement('img');
+      img.src = variant.image_url;
+      img.alt = variant.image_name;
+      img.classList.add('VariantsImagesChild');
+      img.width = 288;
+      img.height = 288;
+      img.onerror = function() {
+          this.onerror = null;
+          this.src = '/static/images/not_found.jpg';
+      };
+      variantCard.appendChild(img);
 
-    // Update the Pokemon names container with all names in the array
-    pokemonNamesContainer.textContent = pokemonNames.join(' & ');
+      const footer = document.createElement('footer');
+      footer.classList.add('Artist');
+      footer.textContent = `Artist: ${variant.artist}`;
+      variantCard.appendChild(footer);
 
-    data.variants.forEach(variant => {
-        const variantCard = document.createElement('article');
-        variantCard.classList.add('VariantsCards', 'border');
-
-        const header = document.createElement('header');
-        header.textContent = `${fusedPokemonName}: ${variant.image_name}`;
-        variantCard.appendChild(header);
-
-        const img = document.createElement('img');
-        img.src = variant.image_url;
-        img.alt = variant.image_name;
-        img.classList.add('VariantsImagesChild');
-        img.width = 288;
-        img.height = 288;
-        img.onerror = function() {
-            this.onerror = null;
-            this.src = '/static/images/not_found.jpg';
-        };
-        variantCard.appendChild(img);
-
-        const footer = document.createElement('footer');
-        footer.classList.add('Artist');
-        footer.textContent = `Artist: ${variant.artist.join(', ')}`;
-        variantCard.appendChild(footer);
-
-        variantsContainer.appendChild(variantCard);
-    });
+      variantsContainer.appendChild(variantCard);
+  });
 }
+
 
   // Populate Pokémon types
   pokemonOneTypesElement.innerHTML = result.pokemonOneTypes.map(type => `<div class="types" id="${type}">${type}</div>`).join('');
