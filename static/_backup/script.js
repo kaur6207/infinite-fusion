@@ -13889,7 +13889,7 @@ const data = {
     ],
     "abilities": [{ "name": "N/A", "hidden": false }]
   }
-}  
+}
 
 
 
@@ -13955,12 +13955,12 @@ const calculateStats = (pokemonNameOne, pokemonNameTwo) => {
   const { hp: bodyHP, attack: bodyAttack, defense: bodyDefense, specialAttack: bodySpecialAttack, specialDefense: bodySpecialDefense, speed: bodySpeed, total: bodyTotal } = pokemonTwo;
 
   // Calculate fused stats using the correct formulas
-  const fusedHP = Math.floor(2 * headHP / 3 + bodyHP / 3);
-  const fusedAttack = Math.floor(2 * bodyAttack / 3 + headAttack / 3);
-  const fusedDefense = Math.floor(2 * bodyDefense / 3 + headDefense / 3);
-  const fusedSpecialAttack = Math.floor(2 * headSpecialAttack / 3 + bodySpecialAttack / 3);
-  const fusedSpecialDefense = Math.floor(2 * headSpecialDefense / 3 + bodySpecialDefense / 3);
-  const fusedSpeed = Math.floor(2 * bodySpeed / 3 + headSpeed / 3);
+  const fusedHP = Math.round(2 * headHP / 3 + bodyHP / 3);
+  const fusedAttack = Math.round(2 * bodyAttack / 3 + headAttack / 3);
+  const fusedDefense = Math.round(2 * bodyDefense / 3 + headDefense / 3);
+  const fusedSpecialAttack = Math.round(2 * headSpecialAttack / 3 + bodySpecialAttack / 3);
+  const fusedSpecialDefense = Math.round(2 * headSpecialDefense / 3 + bodySpecialDefense / 3);
+  const fusedSpeed = Math.round(2 * bodySpeed / 3 + headSpeed / 3);
   const fusedTotal = fusedHP + fusedAttack + fusedDefense + fusedSpecialAttack + fusedSpecialDefense + fusedSpeed;
 
   // Calculate stat differences
@@ -14058,9 +14058,9 @@ const calculateTypes = (pokemonNameOne, pokemonNameTwo) => {
 const checkSwappedTypes = (pokemonName, types) => {
   const dexId = data[pokemonName]["id"];
   const swappedTypesMap = {
-    81: ["Electric", "Steel"], // Magnemite
-    82: ["Electric", "Steel"], // Magneton
-    295: ["Ghost", "Dark"], // Spiritomb
+    81: ["ELECTRIC", "STEEL"], // Magnemite
+    82: ["ELECTRIC", "STEEL"], // Magneton
+    295: ["GHOST", "DARK"], // Spiritomb
   };
 
   if (swappedTypesMap[dexId]) {
@@ -14194,77 +14194,73 @@ const checkSwappedAbilities = (pokemonName, abilities) => {
   return abilities;
 };
 
-
-const typeName = ["NORMAL", "FIRE", "WATER", "ELECTRIC", "GRASS", "ICE", "FIGHTING", "POISON", "GROUND", "FLYING", "PSYCHIC", "BUG", "ROCK", "GHOST", "DRAGON", "DARK", "STEEL", "FAIRY"];
-
-const typesChart = [
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1],              // Normal
-  [1, 0.5, 0.5, 1, 2, 2, 1, 1, 1, 1, 1, 2, 0.5, 1, 0.5, 1, 2, 1, 1],          // Fire
-  [1, 2, 0.5, 1, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 1, 1, 1],            // Water
-  [1, 1, 2, 0.5, 0.5, 1, 1, 1, 0, 2, 1, 1, 1, 1, 0.5, 1, 1, 1, 1],            // Electric
-  [1, 0.5, 2, 1, 0.5, 1, 1, 0.5, 2, 0.5, 1, 0.5, 2, 1, 0.5, 1, 0.5, 1, 1],    // Grass
-  [1, 0.5, 0.5, 1, 2, 0.5, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 0.5, 1, 1],          // Ice
-  [2, 1, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0, 1, 2, 2, 0.5, 1],        // Fighting
-  [1, 1, 1, 1, 2, 1, 1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 1, 1, 0, 2, 1],          // Poison
-  [1, 2, 1, 2, 0.5, 1, 1, 2, 1, 0, 1, 0.5, 2, 1, 1, 1, 2, 1, 1],              // Ground
-  [1, 1, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 0.5, 1, 1],            // Flying
-  [1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5, 1, 1, 1, 1, 0, 0.5, 1, 1],              // Psychic
-  [1, 0.5, 1, 1, 2, 1, 0.5, 0.5, 1, 0.5, 2, 1, 1, 0.5, 1, 2, 0.5, 0.5, 1],    // Bug
-  [1, 2, 1, 1, 1, 2, 0.5, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 0.5, 1, 1],            // Rock
-  [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 1, 1],                // Ghost
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0.5, 0, 1],                // Dragon
-  [1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 0.5, 1],            // Dark
-  [1, 0.5, 0.5, 0.5, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 0.5, 2, 1],          // Steel
-  [1, 0.5, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 0.5, 1, 1],            // Fairy
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]                   // None
+const typeChart = [
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1, 1], // Normal
+  [1, 0.5, 0.5, 1, 2, 2, 1, 1, 1, 1, 1, 2, 0.5, 1, 0.5, 1, 2, 1, 1], // Fire
+  [1, 2, 0.5, 1, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 1, 1, 1], // Water
+  [1, 1, 2, 0.5, 0.5, 1, 1, 1, 0, 2, 1, 1, 1, 1, 0.5, 1, 1, 1, 1], // Electric
+  [1, 0.5, 2, 1, 0.5, 1, 1, 0.5, 2, 0.5, 1, 0.5, 2, 1, 0.5, 1, 0.5, 1, 1], // Grass
+  [1, 0.5, 0.5, 1, 2, 0.5, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 0.5, 1, 1], // Ice
+  [2, 1, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0, 1, 2, 2, 0.5, 1], // Fighting
+  [1, 1, 1, 1, 2, 1, 1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 1, 1, 0, 2, 1], // Poison
+  [1, 2, 1, 2, 0.5, 1, 1, 2, 1, 0, 1, 0.5, 2, 1, 1, 1, 2, 1, 1], // Ground
+  [1, 1, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 0.5, 1, 1], // Flying
+  [1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5, 1, 1, 1, 1, 0, 0.5, 1, 1], // Psychic
+  [1, 0.5, 1, 1, 2, 1, 0.5, 0.5, 1, 0.5, 2, 1, 1, 0.5, 1, 2, 0.5, 0.5, 1], // Bug
+  [1, 2, 1, 1, 1, 2, 0.5, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 0.5, 1, 1], // Rock
+  [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 1, 1], // Ghost
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0.5, 0, 1], // Dragon
+  [1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 0.5, 1], // Dark
+  [1, 0.5, 0.5, 0.5, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 0.5, 2, 1], // Steel
+  [1, 0.5, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 0.5, 1, 1] // Fairy
 ];
 
-const calculateTypeWeakness = (types) => {
+
+const typeNames = [
+    "NORMAL", "FIRE", "WATER", "ELECTRIC", "GRASS", "ICE", "FIGHTING", "POISON",
+    "GROUND", "FLYING", "PSYCHIC", "BUG", "ROCK", "GHOST", "DRAGON", "DARK", "STEEL", "FAIRY"
+]
+
+
+
+function calculateTypeWeakness(types) {
   let weaknesses = {
-    "4x": [],
-    "2x": [],
-    "1x": [],
-    "0.5x": [],
-    "0.25x": [],
-    "0x": []
+      '0x': [],
+      '0.25x': [],
+      '0.5x': [],
+      '1x': [],
+      '2x': [],
+      '4x': []
   };
 
-
-  // Initialize result array with 1
-  let result = Array.from({ length: typeName.length }, () => 1);
-
-  // Calculate weaknesses
-  for (let type of types) {
-    let index = typeName.indexOf(type);
-    if (index !== -1) {
-      for (let i = 0; i < typeName.length; i++) {
-        result[i] *= typesChart[index][i];
-      }
-    }
+  // Flatten the types array if it's a dual type
+  if (types.length > 1) {
+      types = types.flat();
   }
 
-  // Categorize weaknesses
-  for (let i = 0; i < typeName.length; i++) {
-    let multiplier = result[i];
-    if (multiplier === 0) {
-      weaknesses["0x"].push(typeName[i]);
-    } else if (multiplier === 0.25) {
-      weaknesses["0.25x"].push(typeName[i]);
-    } else if (multiplier === 0.5) {
-      weaknesses["0.5x"].push(typeName[i]);
-    } else if (multiplier === 1) {
-      weaknesses["1x"].push(typeName[i]);
-    } else if (multiplier === 2) {
-      weaknesses["2x"].push(typeName[i]);
-    } else if (multiplier === 4) {
-      weaknesses["4x"].push(typeName[i]);
-    }
+  for (let i = 0; i < typeChart.length; i++) {
+      let multiplier = 1;
+      for (let j = 0; j < types.length; j++) {
+          multiplier *= typeChart[i][typeNames.indexOf(types[j])];
+      }
+
+      if (multiplier === 0) {
+          weaknesses['0x'].push(typeNames[i]);
+      } else if (multiplier === 0.25) {
+          weaknesses['0.25x'].push(typeNames[i]);
+      } else if (multiplier === 0.5) {
+          weaknesses['0.5x'].push(typeNames[i]);
+      } else if (multiplier === 1) {
+          weaknesses['1x'].push(typeNames[i]);
+      } else if (multiplier === 2) {
+          weaknesses['2x'].push(typeNames[i]);
+      } else if (multiplier === 4) {
+          weaknesses['4x'].push(typeNames[i]);
+      }
   }
 
   return weaknesses;
-};
-
-
+}
 
 
 
@@ -14437,7 +14433,7 @@ document.getElementById("RandomSecondPokemon").addEventListener("click", () => {
 
 const populateDom = (result) => {
   // first display block (unhide) elements that we need to calculate so use dom pi to get this element #PokemonImages, #PokemonAbilityParent, #StatsParent, #weakness and add them style display block
-
+console.log(result.pokemonTwoTypes)
   // Get references to the elements
   const CopyLink = document.getElementById("CopyLink");
   const pokemonImages = document.getElementById("PokemonImages");
@@ -14544,21 +14540,21 @@ const populateDom = (result) => {
 
   function loadImage(url, onSuccess, onError) {
     var img = new Image();
-    img.onload = function() {
+    img.onload = function () {
       onSuccess(img);
     };
-    img.onerror = function() {
+    img.onerror = function () {
       onError(img);
     };
     img.src = url;
   }
-  
+
   function fetchDataAndPopulateVariants(dexId, identifier, fusedPokemonName) {
-   // first check if element with id VariantsParent have hidden class name so remove class name using if and else conditions
-   const variantsParent = document.getElementById("VariantsParent");
-   if (variantsParent.classList.contains("hidden")) {
-     variantsParent.classList.remove("hidden");
-   }
+    // first check if element with id VariantsParent have hidden class name so remove class name using if and else conditions
+    const variantsParent = document.getElementById("VariantsParent");
+    if (variantsParent.classList.contains("hidden")) {
+      variantsParent.classList.remove("hidden");
+    }
 
     fetch(`https://api.infinitefusion.online/custom-sprites/${dexId}`)
       .then(response => response.json())
@@ -14566,73 +14562,82 @@ const populateDom = (result) => {
         console.log('Data fetched successfully:', data);
         populateVariants(data, identifier, fusedPokemonName);
         // Remove busy state and hidden class    // add DISPLAY HIDE in class VariantsLoader  document.querySelectorAll(".VariantsLoader")
-        document.querySelectorAll(".VariantsLoader").forEach(function(element) {
+        document.querySelectorAll(".VariantsLoader").forEach(function (element) {
           // add hidden class in VariantsLoader class element
           element.classList.add("hidden");
         });
 
 
-     
 
-       
+
+
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-        document.querySelectorAll(".VariantsLoader").forEach(function(element) {
+        document.querySelectorAll(".VariantsLoader").forEach(function (element) {
           element.classList.add("hidden");
         });
       });
   }
-  
+
   loadImage(
     result.fusedPokemonImages.firstCustomSpriteImageUrl,
-    function(img) {
+    function (img) {
       console.log('PokemonOneCustomSpriteImageUrl loaded successfully');
       // Populate actual image
       pokemonOneCustomSpriteElement.src = img.src;
       // Fetch data and populate variants
       fetchDataAndPopulateVariants(result.fusedPokemonImages.firstCustomSpriteDexId, 'FirstPokemon', result.fusedPokemonImages.firstFusedPokemonName);
     },
-    function(img) {
+    function (img) {
       console.error('Error loading PokemonOneCustomSpriteImageUrl');
       // Populate alternate image
       pokemonOneCustomSpriteElement.src = '/static/images/not_found.jpg';
     }
   );
-  
+
   loadImage(
     result.fusedPokemonImages.secondCustomSpriteImageUrl,
-    function(img) {
+    function (img) {
       console.log('PokemonTwoCustomSpriteImageUrl loaded successfully');
       // Populate actual image
       pokemonTwoCustomSpriteElement.src = img.src;
       // Fetch data and populate variants
       fetchDataAndPopulateVariants(result.fusedPokemonImages.secondCustomSpriteDexId, 'SecondPokemon', result.fusedPokemonImages.secondFusedPokemonName);
     },
-    function(img) {
+    function (img) {
       console.error('Error loading PokemonTwoCustomSpriteImageUrl');
       // Populate alternate image
       pokemonTwoCustomSpriteElement.src = '/static/images/not_found.jpg';
     }
   );
-  
- // Initialize an array to store Pokemon names
- function populateVariants(data, identifier, fusedPokemonName) {
-  console.log(data);
-  console.log(identifier);
-  console.log(fusedPokemonName);
 
-  const totalVariants = data.total_variants || 0;
-  const pokemonName = `${fusedPokemonName} : ${totalVariants}`;
 
-  const variantsContainer = document.querySelector('.VariantsCardsParent'); // Targeting the VariantsCardsParent div
+  let pokemonNames = [];
+  // Initialize an array to store Pokemon names
+  function populateVariants(data, identifier, fusedPokemonName) {
+    console.log(data);
+    console.log(identifier);
+    console.log(fusedPokemonName);
 
-  if (!variantsContainer) {
+    const totalVariants = data.total_variants || 0;
+    const pokemonName = `${fusedPokemonName} : ${totalVariants}`;
+
+    const variantsContainer = document.querySelector('.VariantsCardsParent'); // Targeting the VariantsCardsParent div
+    const pokemonNamesContainer = document.getElementById('PokemonNamesText');
+
+    if (!variantsContainer || !pokemonNamesContainer) {
       console.error('Containers not found');
       return;
-  }
+    }
 
-  data.variants.forEach(variant => {
+    // Add the current Pokemon name to the array
+    pokemonNames.push(pokemonName);
+
+    // Update the Pokemon names container with all names in the array
+    pokemonNamesContainer.textContent = pokemonNames.join(' & ');
+
+    data.variants.forEach(variant => {
       const variantCard = document.createElement('article');
       variantCard.classList.add('VariantsCards', 'border');
 
@@ -14646,9 +14651,9 @@ const populateDom = (result) => {
       img.classList.add('VariantsImagesChild');
       img.width = 288;
       img.height = 288;
-      img.onerror = function() {
-          this.onerror = null;
-          this.src = '/static/images/not_found.jpg';
+      img.onerror = function () {
+        this.onerror = null;
+        this.src = '/static/images/not_found.jpg';
       };
       variantCard.appendChild(img);
 
@@ -14658,8 +14663,8 @@ const populateDom = (result) => {
       variantCard.appendChild(footer);
 
       variantsContainer.appendChild(variantCard);
-  });
-}
+    });
+  }
 
 
   // Populate Pokémon types
