@@ -3901,32 +3901,36 @@ p {
   border-color: var(--pico-form-element-border-color) !important;
 }
 
+
 /* Define grid layout */
 .VariantsCardsParent {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Each grid item will have a minimum width of 300px */
   grid-gap: 20px; /* Spacing between grid items */
-  justify-content: center; /* Center items horizontally */
-  align-items: center; /* Center items vertically */
+  column-gap: 20px !important;
+  /* justify-content: center !; Center items horizontally */
+  justify-content: space-between !important;
+  align-items: center !important;
+  text-align: center;
+  margin: auto !important;
+  padding: auto;
 }
 
 /* Style for variant cards */
 .VariantsCards {
   border: 1px solid #ccc;
-  max-width: 400px;
-  margin: 0 auto;
   text-align: center;
-  /* padding: 10px; */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  width: 300px;
+  max-width: 350px;
+  margin: auto !important;
 }
 
 /* Style for variant card images */
 .VariantsImagesChild {
-  width: 300px;
-  height: 300px;
+  max-width: 100%;
+  height: auto;
 }
 
 #PokemonNames {
