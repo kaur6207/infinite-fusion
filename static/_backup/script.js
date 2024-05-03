@@ -14616,6 +14616,8 @@ console.log(result.pokemonTwoTypes)
   let pokemonNames = [];
   // Initialize an array to store Pokemon names
   function populateVariants(data, identifier, fusedPokemonName) {
+    // first hide VariantsLoader by adding hidden class in this id VariantsLoader
+    document.getElementById("VariantsLoader").classList.add("hidden");
     console.log(data);
     console.log(identifier);
     console.log(fusedPokemonName);
