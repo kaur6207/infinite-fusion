@@ -14548,105 +14548,93 @@ console.log(result.pokemonTwoTypes)
     };
     img.src = url;
   }
-
+  
   function fetchDataAndPopulateVariants(dexId, identifier, fusedPokemonName) {
-    // first check if element with id VariantsParent have hidden class name so remove class name using if and else conditions
     const variantsParent = document.getElementById("VariantsParent");
     if (variantsParent.classList.contains("hidden")) {
       variantsParent.classList.remove("hidden");
     }
-
+  
     fetch(`https://api.infinitefusion.online/custom-sprites/${dexId}`)
       .then(response => response.json())
       .then(data => {
         console.log('Data fetched successfully:', data);
         populateVariants(data, identifier, fusedPokemonName);
-        // Remove busy state and hidden class    // add DISPLAY HIDE in class VariantsLoader  document.querySelectorAll(".VariantsLoader")
         document.querySelectorAll(".VariantsLoader").forEach(function (element) {
-          // add hidden class in VariantsLoader class element
           element.classList.add("hidden");
         });
-
-
-
-
-
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-        document.querySelectorAll(".VariantsLoader").forEach(function (element) {
+        document.querySelectorAll("#VariantsLoader").forEach(function (element) {
           element.classList.add("hidden");
         });
+        const errorMessageElement = document.getElementById('errorMessage');
+        if (errorMessageElement) {
+          // document.getElementById("VariantsLoader").classList.add("hidden");
+          errorMessageElement.textContent = 'Error fetching data: ' + error.message;
+        } else {
+          console.error('Error message element not found');
+        }
       });
   }
-
+  
   loadImage(
     result.fusedPokemonImages.firstCustomSpriteImageUrl,
     function (img) {
       console.log('PokemonOneCustomSpriteImageUrl loaded successfully');
-      // Populate actual image
       pokemonOneCustomSpriteElement.src = img.src;
-      // Fetch data and populate variants
       fetchDataAndPopulateVariants(result.fusedPokemonImages.firstCustomSpriteDexId, 'FirstPokemon', result.fusedPokemonImages.firstFusedPokemonName);
     },
     function (img) {
       console.error('Error loading PokemonOneCustomSpriteImageUrl');
-      // Populate alternate image
       pokemonOneCustomSpriteElement.src = '/static/images/not_found.jpg';
     }
   );
-
+  
   loadImage(
     result.fusedPokemonImages.secondCustomSpriteImageUrl,
     function (img) {
       console.log('PokemonTwoCustomSpriteImageUrl loaded successfully');
-      // Populate actual image
       pokemonTwoCustomSpriteElement.src = img.src;
-      // Fetch data and populate variants
       fetchDataAndPopulateVariants(result.fusedPokemonImages.secondCustomSpriteDexId, 'SecondPokemon', result.fusedPokemonImages.secondFusedPokemonName);
     },
     function (img) {
       console.error('Error loading PokemonTwoCustomSpriteImageUrl');
-      // Populate alternate image
       pokemonTwoCustomSpriteElement.src = '/static/images/not_found.jpg';
     }
   );
-
-
+  
   let pokemonNames = [];
-  // Initialize an array to store Pokemon names
+  
   function populateVariants(data, identifier, fusedPokemonName) {
-    // first hide VariantsLoader by adding hidden class in this id VariantsLoader
     document.getElementById("VariantsLoader").classList.add("hidden");
     console.log(data);
     console.log(identifier);
     console.log(fusedPokemonName);
-
+  
     const totalVariants = data.total_variants || 0;
     const pokemonName = `${fusedPokemonName} : ${totalVariants}`;
-
-    const variantsContainer = document.querySelector('.VariantsCardsParent'); // Targeting the VariantsCardsParent div
+  
+    const variantsContainer = document.querySelector('.VariantsCardsParent');
     const pokemonNamesContainer = document.getElementById('PokemonNamesText');
-
+  
     if (!variantsContainer || !pokemonNamesContainer) {
       console.error('Containers not found');
       return;
     }
-
-    // Add the current Pokemon name to the array
+  
     pokemonNames.push(pokemonName);
-
-    // Update the Pokemon names container with all names in the array
     pokemonNamesContainer.textContent = pokemonNames.join(' & ');
-
+  
     data.variants.forEach(variant => {
       const variantCard = document.createElement('article');
       variantCard.classList.add('VariantsCards', 'border');
-
+  
       const header = document.createElement('header');
       header.textContent = `${fusedPokemonName}: ${variant.image_name}`;
       variantCard.appendChild(header);
-
+  
       const img = document.createElement('img');
       img.src = variant.image_url;
       img.alt = variant.image_name;
@@ -14658,16 +14646,15 @@ console.log(result.pokemonTwoTypes)
         this.src = '/static/images/not_found.jpg';
       };
       variantCard.appendChild(img);
-
+  
       const footer = document.createElement('footer');
       footer.classList.add('Artist');
       footer.textContent = `Artist: ${variant.artist}`;
       variantCard.appendChild(footer);
-
+  
       variantsContainer.appendChild(variantCard);
     });
   }
-
 
   // Populate Pokémon types
   pokemonOneTypesElement.innerHTML = result.pokemonOneTypes.map(type => `<div class="types" id="${type}">${type}</div>`).join('');
