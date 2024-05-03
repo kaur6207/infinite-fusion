@@ -3953,3 +3953,26 @@ p {
 .ImageCards>footer, .VariantsCards>footer{
   background-color: var(--ImageCards-Footer-background-color);
 }
+
+.footer-nav {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    position: relative;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.footer-nav li {
+    /* Additional styles for list items */
+    text-align: center;
+    list-style: none;
+}
+
+
+.footer-nav li a:hover {
+    /* Styles for link hover state */
+    color: #666; /* Change color on hover as desired */
+}
