@@ -14217,46 +14217,46 @@ const typeChart = [
 
 
 const typeNames = [
-    "NORMAL", "FIRE", "WATER", "ELECTRIC", "GRASS", "ICE", "FIGHTING", "POISON",
-    "GROUND", "FLYING", "PSYCHIC", "BUG", "ROCK", "GHOST", "DRAGON", "DARK", "STEEL", "FAIRY"
+  "NORMAL", "FIRE", "WATER", "ELECTRIC", "GRASS", "ICE", "FIGHTING", "POISON",
+  "GROUND", "FLYING", "PSYCHIC", "BUG", "ROCK", "GHOST", "DRAGON", "DARK", "STEEL", "FAIRY"
 ]
 
 
 
 function calculateTypeWeakness(types) {
   let weaknesses = {
-      '0x': [],
-      '0.25x': [],
-      '0.5x': [],
-      '1x': [],
-      '2x': [],
-      '4x': []
+    '0x': [],
+    '0.25x': [],
+    '0.5x': [],
+    '1x': [],
+    '2x': [],
+    '4x': []
   };
 
   // Flatten the types array if it's a dual type
   if (types.length > 1) {
-      types = types.flat();
+    types = types.flat();
   }
 
   for (let i = 0; i < typeChart.length; i++) {
-      let multiplier = 1;
-      for (let j = 0; j < types.length; j++) {
-          multiplier *= typeChart[i][typeNames.indexOf(types[j])];
-      }
+    let multiplier = 1;
+    for (let j = 0; j < types.length; j++) {
+      multiplier *= typeChart[i][typeNames.indexOf(types[j])];
+    }
 
-      if (multiplier === 0) {
-          weaknesses['0x'].push(typeNames[i]);
-      } else if (multiplier === 0.25) {
-          weaknesses['0.25x'].push(typeNames[i]);
-      } else if (multiplier === 0.5) {
-          weaknesses['0.5x'].push(typeNames[i]);
-      } else if (multiplier === 1) {
-          weaknesses['1x'].push(typeNames[i]);
-      } else if (multiplier === 2) {
-          weaknesses['2x'].push(typeNames[i]);
-      } else if (multiplier === 4) {
-          weaknesses['4x'].push(typeNames[i]);
-      }
+    if (multiplier === 0) {
+      weaknesses['0x'].push(typeNames[i]);
+    } else if (multiplier === 0.25) {
+      weaknesses['0.25x'].push(typeNames[i]);
+    } else if (multiplier === 0.5) {
+      weaknesses['0.5x'].push(typeNames[i]);
+    } else if (multiplier === 1) {
+      weaknesses['1x'].push(typeNames[i]);
+    } else if (multiplier === 2) {
+      weaknesses['2x'].push(typeNames[i]);
+    } else if (multiplier === 4) {
+      weaknesses['4x'].push(typeNames[i]);
+    }
   }
 
   return weaknesses;
@@ -14433,7 +14433,7 @@ document.getElementById("RandomSecondPokemon").addEventListener("click", () => {
 
 const populateDom = (result) => {
   // first display block (unhide) elements that we need to calculate so use dom pi to get this element #PokemonImages, #PokemonAbilityParent, #StatsParent, #weakness and add them style display block
-console.log(result.pokemonTwoTypes)
+  console.log(result.pokemonTwoTypes)
   // Get references to the elements
   const CopyLink = document.getElementById("CopyLink");
   const pokemonImages = document.getElementById("PokemonImages");
@@ -14548,13 +14548,13 @@ console.log(result.pokemonTwoTypes)
     };
     img.src = url;
   }
-  
+
   function fetchDataAndPopulateVariants(dexId, identifier, fusedPokemonName) {
     const variantsParent = document.getElementById("VariantsParent");
     if (variantsParent.classList.contains("hidden")) {
       variantsParent.classList.remove("hidden");
     }
-  
+
     fetch(`https://api.infinitefusion.online/custom-sprites/${dexId}`)
       .then(response => response.json())
       .then(data => {
@@ -14578,7 +14578,7 @@ console.log(result.pokemonTwoTypes)
         }
       });
   }
-  
+
   loadImage(
     result.fusedPokemonImages.firstCustomSpriteImageUrl,
     function (img) {
@@ -14591,7 +14591,7 @@ console.log(result.pokemonTwoTypes)
       pokemonOneCustomSpriteElement.src = '/static/images/not_found.jpg';
     }
   );
-  
+
   loadImage(
     result.fusedPokemonImages.secondCustomSpriteImageUrl,
     function (img) {
@@ -14604,37 +14604,37 @@ console.log(result.pokemonTwoTypes)
       pokemonTwoCustomSpriteElement.src = '/static/images/not_found.jpg';
     }
   );
-  
+
   let pokemonNames = [];
-  
+
   function populateVariants(data, identifier, fusedPokemonName) {
     document.getElementById("VariantsLoader").classList.add("hidden");
     console.log(data);
     console.log(identifier);
     console.log(fusedPokemonName);
-  
+
     const totalVariants = data.total_variants || 0;
     const pokemonName = `${fusedPokemonName} : ${totalVariants}`;
-  
+
     const variantsContainer = document.querySelector('.VariantsCardsParent');
     const pokemonNamesContainer = document.getElementById('PokemonNamesText');
-  
+
     if (!variantsContainer || !pokemonNamesContainer) {
       console.error('Containers not found');
       return;
     }
-  
+
     pokemonNames.push(pokemonName);
     pokemonNamesContainer.textContent = pokemonNames.join(' & ');
-  
+
     data.variants.forEach(variant => {
       const variantCard = document.createElement('article');
       variantCard.classList.add('VariantsCards', 'border');
-  
+
       const header = document.createElement('header');
       header.textContent = `${fusedPokemonName}: ${variant.image_name}`;
       variantCard.appendChild(header);
-  
+
       const img = document.createElement('img');
       img.src = variant.image_url;
       img.alt = variant.image_name;
@@ -14646,12 +14646,12 @@ console.log(result.pokemonTwoTypes)
         this.src = '/static/images/not_found.jpg';
       };
       variantCard.appendChild(img);
-  
+
       const footer = document.createElement('footer');
       footer.classList.add('Artist');
       footer.textContent = `Artist: ${variant.artist}`;
       variantCard.appendChild(footer);
-  
+
       variantsContainer.appendChild(variantCard);
     });
   }
