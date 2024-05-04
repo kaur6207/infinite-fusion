@@ -48,25 +48,33 @@
     <!-- CSS File -->
     <link rel="stylesheet" href="/static/styles/app.css">
 
-    <style type="text/css">
-        .mobileShow {display: none;}
-      
-        /* Smartphone Portrait and Landscape */
-        @media only screen
-          and (min-device-width : 320px)
-          and (max-device-width : 480px){ 
-            .mobileShow {display: inline;}
-        }
-        .mobileHide { display: inline; }
-      
-        /* Smartphone Portrait and Landscape */
-        @media only screen
-          and (min-device-width : 320px)
-          and (max-device-width : 480px){
-           .mobileHide { display: none;}
-        }
-      </style>
+ <style>
+    /* Styles for the card */
 
+
+/* Styles for the horizontal rule */
+
+/* Styles for mobile devices */
+.mobileShow {
+    display: none; /* Hide on desktop */
+}
+
+.mobileHide {
+    display: block; /* Show on desktop */
+}
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 750px) {
+    .mobileShow {
+        display: block; /* Show on mobile */
+    }
+
+    .mobileHide {
+        display: none; /* Hide on mobile */
+    }
+}
+
+ </style>
     <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8908660960642832" crossorigin="anonymous"></script> -->
 
 </head>
@@ -150,7 +158,7 @@
                 </fieldset>
             </form>
         </article>
-        <article class="card">
+        <article class="card" style="margin: auto;">
             <p style="text-align: center;">Ads</p>
             <hr>
             <div class="mobileShow">
