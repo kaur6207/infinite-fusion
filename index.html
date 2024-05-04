@@ -48,6 +48,25 @@
     <!-- CSS File -->
     <link rel="stylesheet" href="/static/styles/app.css">
 
+    <style type="text/css">
+        .mobileShow {display: none;}
+      
+        /* Smartphone Portrait and Landscape */
+        @media only screen
+          and (min-device-width : 320px)
+          and (max-device-width : 480px){ 
+            .mobileShow {display: inline;}
+        }
+        .mobileHide { display: inline; }
+      
+        /* Smartphone Portrait and Landscape */
+        @media only screen
+          and (min-device-width : 320px)
+          and (max-device-width : 480px){
+           .mobileHide { display: none;}
+        }
+      </style>
+
     <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8908660960642832" crossorigin="anonymous"></script> -->
 
 </head>
@@ -131,19 +150,33 @@
                 </fieldset>
             </form>
         </article>
-        <article class="card" style="min-height: 350; overflow-x: scroll;">
+        <article class="card" style="overflow-x: scroll;">
             <p style="text-align: center;">Ads</p>
             <hr>
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'ac45e5af85e13994d13ef9afb2b646ec',
-                    'format' : 'iframe',
-                    'height' : 300,
-                    'width' : 160,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.topcreativeformat.com/ac45e5af85e13994d13ef9afb2b646ec/invoke.js"></script>
+            <div class="mobileShow">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : 'ac45e5af85e13994d13ef9afb2b646ec',
+                        'format' : 'iframe',
+                        'height' : 300,
+                        'width' : 160,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.topcreativeformat.com/ac45e5af85e13994d13ef9afb2b646ec/invoke.js"></script>
+            </div>
+            <div class="mobileHide">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '70d18903fda0c64e43e5709e065b3f4c',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.topcreativeformat.com/70d18903fda0c64e43e5709e065b3f4c/invoke.js"></script>
+            </div>
         </article>
         <article class="hidden ImagesParentGrid border" id="PokemonImages" role="group">
             <div class="PokemonOneImages" id="PokemonOneImages">
