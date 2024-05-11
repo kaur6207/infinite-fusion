@@ -139,7 +139,10 @@
                 <div role="button" class="outline" id="Reset">Reset</div>
             </div>
         </article>
-        <article class="card">
+ 
+        
+        <article class="card" style="margin: auto;">
+            <p style="text-align: center; display: block;"><kbd>Advertisement</kbd></p>
             <style>
                 /* Desktop styles */
                 .desktop {
@@ -149,6 +152,13 @@
                 /* Mobile styles */
                 .mobile {
                     display: none;
+                }
+        
+                .flex {
+                    display: flex;
+                    text-align: center;
+                    align-items: center;
+                    justify-content: center;
                 }
         
                 @media only screen and (max-width: 600px) {
@@ -164,12 +174,12 @@
                 }
             </style>
         
-            <div class="desktop">
+            <div class="desktop flex ads" id="desktopAd">
                 <script async="async" data-cfasync="false" src="//biscuitmortify.com/3ca7e7163e11ddede6a4323c2f786510/invoke.js"></script>
                 <div id="container-3ca7e7163e11ddede6a4323c2f786510"></div>
             </div>
         
-            <div class="mobile">
+            <div class="mobile flex ads" id="mobileAd">
                 <script type="text/javascript">
                     atOptions = {
                         'key': '67cdd2971b223712c4fa31a86b0b009a',
@@ -182,6 +192,41 @@
                 <script type="text/javascript" src="//biscuitmortify.com/67cdd2971b223712c4fa31a86b0b009a/invoke.js"></script>
             </div>
         </article>
+        
+        <dialog id="adBlockDialog">
+            <article>
+                <header>
+                    <button aria-label="Close" rel="prev" onclick="closeDialog()"></button>
+                    <p>
+                        <strong>⚠️ Please Disable Ad Blocker</strong>
+                    </p>
+                </header>
+                <p>
+                    We notice that you're using an ad blocker. While we respect your choice, we kindly ask you to disable it for our website. 
+                    Our site relies on ads to cover server costs, and showing a single ad snippet won't affect your user experience but greatly helps us.
+                </p>
+                <p>
+                    Thank you for your support!
+                </p>
+            </article>
+        </dialog>
+        
+        <script>
+            // Check if the ad blocking script is loaded
+            function isAdBlocked() {
+                return window.adBlockerDetected || false; // Change 'adBlockerDetected' to your variable name
+            }
+        
+            // Show the dialog if ad blocking script is detected
+            if (isAdBlocked()) {
+                document.getElementById("adBlockDialog").showModal();
+            }
+        
+            // Close the dialog when the close button is clicked
+            function closeDialog() {
+                document.getElementById("adBlockDialog").close();
+            }
+        </script>
         
         
         <article class="hidden card" id="CopyLink">
