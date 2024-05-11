@@ -13905,8 +13905,8 @@ const pokemonNameTwo = secondPokeParam;
 
 //  function generateFusionImages (dexIdOne, dexIdTwo)
 const generateFusionImages = (dexIdOne, dexIdTwo) => {
-  const firstCustomSpriteImageUrl = `https://gitlab.com/pokemoninfinitefusion/customsprites/-/raw/master/CustomBattlers/${dexIdOne}.${dexIdTwo}.png`;
-  const secondCustomSpriteImageUrl = `https://gitlab.com/pokemoninfinitefusion/customsprites/-/raw/master/CustomBattlers/${dexIdTwo}.${dexIdOne}.png`;
+  const firstCustomSpriteImageUrl = `https://cdn.jsdelivr.net/gh/8vish/custom-sprites/CustomBattlers/${dexIdOne}.${dexIdTwo}.png`;
+  const secondCustomSpriteImageUrl = `https://cdn.jsdelivr.net/gh/8vish/custom-sprites/CustomBattlers/${dexIdTwo}.${dexIdOne}.png`;
 
   // Generate image URLs for autogen sprites
   const firstAutogenSpriteImageUrl = `https://cdn.jsdelivr.net/gh/8vish/autogen-sprites/Battlers/${dexIdOne}/${dexIdOne}.${dexIdTwo}.png`;
