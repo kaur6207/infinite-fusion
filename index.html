@@ -139,17 +139,50 @@
                 <div role="button" class="outline" id="Reset">Reset</div>
             </div>
         </article>
-        <article class="card ads">
+        <article class="card">
             <style>
+                /* Desktop styles */
+                .desktop {
+                    display: block;
+                }
+        
+                /* Mobile styles */
+                .mobile {
+                    display: none;
+                }
+        
                 @media only screen and (max-width: 600px) {
-                    .ads {
-                        display: none !important;
+                    /* Hide desktop on mobile */
+                    .desktop {
+                        display: none;
+                    }
+        
+                    /* Show mobile on mobile */
+                    .mobile {
+                        display: block;
                     }
                 }
             </style>
-            <script async="async" data-cfasync="false" src="//biscuitmortify.com/3ca7e7163e11ddede6a4323c2f786510/invoke.js"></script>
-            <div id="container-3ca7e7163e11ddede6a4323c2f786510"></div>
+        
+            <div class="desktop">
+                <script async="async" data-cfasync="false" src="//biscuitmortify.com/3ca7e7163e11ddede6a4323c2f786510/invoke.js"></script>
+                <div id="container-3ca7e7163e11ddede6a4323c2f786510"></div>
+            </div>
+        
+            <div class="mobile">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key': '67cdd2971b223712c4fa31a86b0b009a',
+                        'format': 'iframe',
+                        'height': 250,
+                        'width': 300,
+                        'params': {}
+                    };
+                </script>
+                <script type="text/javascript" src="//biscuitmortify.com/67cdd2971b223712c4fa31a86b0b009a/invoke.js"></script>
+            </div>
         </article>
+        
         
         <article class="hidden card" id="CopyLink">
             <form>
