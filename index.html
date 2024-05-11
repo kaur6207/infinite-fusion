@@ -158,7 +158,7 @@
                     align-items: center;
                     justify-content: center;
                 }
-
+        
                 @media only screen and (max-width: 600px) {
                     /* Hide desktop on mobile */
                     .desktop {
@@ -170,14 +170,22 @@
                         display: block;
                     }
                 }
+                @media only screen and (min-width: 600px) {
+          
+        
+                    /* Show mobile on mobile */
+                    .mobile {
+                        display: none;
+                    }
+                }
             </style>
         
-            <div class="desktop flex ads">
+            <div class="desktop flex">
                 <script async="async" data-cfasync="false" src="//biscuitmortify.com/3ca7e7163e11ddede6a4323c2f786510/invoke.js"></script>
                 <div id="container-3ca7e7163e11ddede6a4323c2f786510"></div>
             </div>
         
-            <div class="mobile flex ads">
+            <div class="mobile flex">
                 <script type="text/javascript">
                     atOptions = {
                         'key': '67cdd2971b223712c4fa31a86b0b009a',
@@ -482,7 +490,7 @@
         </article>
     </footer>
 
-    <dialog cl>
+    <dialog >
         <article>
           <header>
             <button aria-label="Close" rel="prev"></button>
