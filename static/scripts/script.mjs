@@ -2,12 +2,12 @@
 const currentDomain = window.location.hostname;
 
 // Define the allowed domains
-const allowedDomains = ['localhost', '127.0.0.1', 'infinitefusion.online'];
+const allowedDomains = ['localhost', '127.0.0.1', 'infinitefusion.org'];
 
 // Check if the current domain is allowed
 if (!allowedDomains.includes(currentDomain)) {
   // Redirect to the main production domain
-  window.location.href = 'https://infinitefusion.online/';
+  window.location.href = 'https://infinitefusion.org/';
 }
 
 
@@ -14424,13 +14424,6 @@ document.getElementById("RandomSecondPokemon").addEventListener("click", () => {
 
 
 
-
-
-
-
-
-
-
 const populateDom = (result) => {
   // first display block (unhide) elements that we need to calculate so use dom pi to get this element #PokemonImages, #PokemonAbilityParent, #StatsParent, #weakness and add them style display block
   console.log(result.pokemonTwoTypes)
@@ -14555,7 +14548,7 @@ const populateDom = (result) => {
       variantsParent.classList.remove("hidden");
     }
 
-    fetch(`https://api.infinitefusion.online/custom-sprites/${dexId}`)
+    fetch(`http://api.infinitefusion.online/custom-sprites/${dexId}`)
       .then(response => response.json())
       .then(data => {
         console.log('Data fetched successfully:', data);
@@ -14736,10 +14729,6 @@ const populateAbilities = (element, abilities, fusedPokemonName, dexId, headingI
     element.appendChild(hiddenAbilityDiv);
   });
 };
-
-
-
-
 
 if (firstPokeParam && secondPokeParam) {
   const result = runAllFunctions(pokemonNameOne, pokemonNameTwo);
