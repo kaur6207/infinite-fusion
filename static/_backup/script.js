@@ -1,14 +1,14 @@
-// Get the current domain
-const currentDomain = window.location.hostname;
+// // Get the current domain
+// const currentDomain = window.location.hostname;
 
-// Define the allowed domains
-const allowedDomains = ['localhost', '127.0.0.1', 'infinitefusion.online'];
+// // Define the allowed domains
+// const allowedDomains = ['localhost', '127.0.0.1', 'infinitefusion.online'];
 
-// Check if the current domain is allowed
-if (!allowedDomains.includes(currentDomain)) {
-  // Redirect to the main production domain
-  window.location.href = 'https://infinitefusion.online/';
-}
+// // Check if the current domain is allowed
+// if (!allowedDomains.includes(currentDomain)) {
+//   // Redirect to the main production domain
+//   window.location.href = 'https://infinitefusion.online/';
+// }
 
 
 // Parse URL parameters
