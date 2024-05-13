@@ -14548,7 +14548,7 @@ const populateDom = (result) => {
       variantsParent.classList.remove("hidden");
     }
 
-    fetch(`http://api.infinitefusion.online/custom-sprites/${dexId}`)
+    fetch(`https://api.infinitefusion.online/custom-sprites/${dexId}`)
       .then(response => response.json())
       .then(data => {
         console.log('Data fetched successfully:', data);
